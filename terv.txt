@@ -1,0 +1,69 @@
+Bálint ház
+	- tovább alvás 
+	- 
+
+Mákvirág kocsma
+	- ital kérés (körök száma):
+				véralkoholszint +10/kör  
+				életkedv +5/kör
+	- beszélgetés alkoholistákkal:
+				50-50 életkedv vagy idegállapot +5
+WC
+	- kardozás:
+	- hányás: 
+		véralkohol reset
+
+Virágágyás
+	- aludni: 
+		véralkohol szint -50
+
+Dunaszeg
+	- megkergetnek a kutyák
+		- elfutsz:
+			idegállapot+
+		- megrugdosod:
+			életkedv-
+	- jegyvétel (pénz-) vagy blicc (random pénz--)
+
+Fazekas sufnija
+	- talalkozás Fazekassal:
+		1. fegyver lehetoseg
+		2. elfutsz
+		3. meghalsz
+	- random fegyver ellopása:
+		verekedésnél++
+zámolyi buszmegálló
+	- nyugdíjasokkal vitatkozás:
+		idegállapot +30
+	- random nem jon a busz
+		töltés:
+			random elesel (idegállapot+) vagy szép utad lesz (életkedv+)
+vidéki
+	- cigi kéregetés:
+		 adsz (-pénz)/nem adsz -> Lucifer XXX shop előtt megtámadnak 
+
+Kondi
+	- vehetsz kokszot -> verekedés+, pénz-, életkedv+, Anna könnyebben adja oda a tel.számát
+	- kondizhatsz:
+		idegállapot-
+		életkedv+
+Dohi
+	opcionális:
+		pénz kunyerálás:
+			vagy pénz+, vagy életkedv-
+	vehetsz cigit/alkohol
+		idegállapot-
+		pénz-
+		életkedv+
+XXX shop
+	HA vidékiben nem adsz pénzt, megtámadnak
+				ha vesztesz: 
+					életkedv---
+					idegállapot++
+					kórházba (70-30)
+				ha fegyver + bogyó -> nyersz:
+					pénz++
+					életkedv+
+
+		
+		
