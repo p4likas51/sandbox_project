@@ -3,13 +3,21 @@ A végső célunk, hogy a Mákvirág Kocsmában valamilyen módon törlesszük a
 Különböző statisztikáink vannak melyek: Életkedv 0-100
 					Idegállapot 0-100
 					Véralkoholszint 0-100
-					Pénz 0-
-					Tartozás 
+					Pénz: 2k
+					Tartozás 10k
+					Verekedés - játékos nem tud róla
+Jelmagyarázat:
+	+ = 5
+	++ = 15
+	+++ = 45
+	- = 5
+	-- = 15
+	--- = 45
 
 
 Bálint ház
-	- tovább alvás 
-	- 
+	- tovább alvás
+		életkedv +
 
 Mákvirág kocsma
 	- ital kérés (körök száma):
@@ -19,6 +27,7 @@ Mákvirág kocsma
 				50-50 életkedv vagy idegállapot +5
 WC
 	- kardozás:
+		életkedv+;
 	- hányás: 
 		véralkohol reset
 
@@ -38,6 +47,7 @@ Fazekas sufnija
 	- talalkozás Fazekassal:
 		1. fegyver lehetoseg
 		2. elfutsz
+   			idegállapot++
 		3. meghalsz
 	- random fegyver ellopása:
 		verekedésnél++
@@ -66,13 +76,104 @@ Dohi
 		életkedv+
 XXX shop
 	HA vidékiben nem adsz pénzt, megtámadnak
-				ha vesztesz: 
+				 vesztesz: 
 					életkedv---
 					idegállapot++
 					kórházba (70-30)
 				ha fegyver + bogyó -> nyersz:
 					pénz++
 					életkedv+
+
+	- gumiostor vásárlása -> + fegyver; pénz-
+	- gimp ruha -> pénz- ; életkedv+
+
+vasútállomás aluljáró
+	- random utcazenész pénz ellopása -> pénz+
+	- nyílvános WC meglátogatása -> pénz- ; életkedv- ; idegállapot- ;
+	
+Eurós bolt
+	- találkozás random Roncz Olivérrel -> idegállapot++
+	- rakéta vásárlása -> idegállapot-; pénz-; véralkoholszint+ ;
+	- hagymáskarika -> pénz- ; életkedv+ ,
+
+Jedlik iskola bejárat
+	- találkozás biztonsági őr random motozás 15% -> idegállapot+; fegyverek elvesztése
+
+Fazakas terem
+	- ha elfutottál kiküld a teremből -> életkedv+;
+	- ha fegyvert loptál végig ülöd az órát -> életkedv-;
+
+Vincze Flórián terem
+	- elmarad az óra 25%
+	- választás random párbeszéd nincs hatással a statra de tippet kapsz a multiméter ellopásáról 100% siker
+
+C# terem 
+	- Ammóniagáz letüdőzése -> verekedés-;
+	
+41 padlás
+	- snüssz megtalálása
+		-> eladod - pénz+;
+		-> felhasználod
+			-ha kibírod 40-60% idegállapot--;
+			-ha nem összeokádod magad életkedv--;
+
+Folyosó
+	- aprópénz találása 20%
+	- Random Fortuna találkozás -> életkedv-; idegállapot+;
+
+Jedlikk WC
+	- választás hotbox ha van cigi -> életkedv+; vészély kiküldenek az iskolából 40%
+
+Büfé
+	- párbeszéd
+		-> 2 párbeszéd - mindkettő jó -> telefonszám és szökés opció
+		-> 2 párbeszéd 1 jó válasz és van koksz -> -||-
+		-> ha mindkettő válasz rossz elbuktál csak vásárolni tudsz
+
+	- vásárlás kaja -> pénz-; életkedv+,
+
+B épület átjáró 
+	- random nincs kapu -> kerülni kell -> idegállapot+;
+
+Tesi öltöző
+	- Benjamin megdicséri kifejlett férfiasságod -> életkedv+;
+	- random találkozás Olivérrel -> idegállapot+; életkedv-;
+
+Szűcs Gábor terem
+	- elmarad az óra 15%
+	- opcionális multiméter ellopása -> pénz++ 50-50%
+
+
+Tesi terem
+	- Ádi bácsi megdicséri a cipőd -> életkedv+;
+	- random röplabda 70% -> idegállapot+;
+Termeknél 20% hogy random kiküld bármelyik tanár (Vincze Flórinál 40%) -> egyből kijárat
+Folyosóról betudsz menni az orvoshoz -> 20% hogy ad igazolást
+
+Jedlik kijárat
+	HA vidékiben nem adsz pénzt, megtámadnak
+				 vesztesz: 
+					életkedv---
+					idegállapot++
+					kórházba (70-30)
+				ha fegyver + bogyó -> nyersz:
+					pénz++
+					életkedv+
+	Vége a sulinak:
+		életkedv+
+		idegállapot-
+		Jedlik szekcióba már nem lehet visszamenni
+
+
+
+
+
+
+
+
+
+
+
 
 		
 		
