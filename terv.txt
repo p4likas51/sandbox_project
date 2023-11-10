@@ -1,3 +1,12 @@
+A játékunk Pintér Bálint egy átlagos napját mutatja be, azokkal a helyszínekkel, ahova Bálint nap mint nap belátogat.
+A végső célunk, hogy a Mákvirág Kocsmában valamilyen módon törlesszük a felhalmozódott hitelt.
+Különböző statisztikáink vannak melyek: Életkedv 0-100
+					Idegállapot 0-100
+					Véralkoholszint 0-100
+					Pénz 0-
+					Tartozás 
+
+
 Bálint ház
 	- tovább alvás 
 	- 
