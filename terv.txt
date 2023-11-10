@@ -14,7 +14,6 @@ Jelmagyarázat:
 	-- = 15
 	--- = 45
 
-
 Bálint ház
 	- tovább alvás
 		életkedv +
@@ -24,7 +23,7 @@ Mákvirág kocsma
 				véralkoholszint +10/kör  
 				életkedv +5/kör
 	- beszélgetés alkoholistákkal:
-				50-50 életkedv vagy idegállapot +5
+				50-50 életkedv vagy idegállapot +
 WC
 	- kardozás:
 		életkedv+;
@@ -36,21 +35,22 @@ Virágágyás
 		véralkohol szint -50
 
 Dunaszeg
-	- megkergetnek a kutyák
+	- random 65% megkergetnek a kutyák
 		- elfutsz:
-			idegállapot+
+			idegállapot++
 		- megrugdosod:
-			életkedv-
+			életkedv--
 	- jegyvétel (pénz-) vagy blicc (random pénz--)
 
 Fazekas sufnija
 	- talalkozás Fazekassal:
 		1. fegyver lehetoseg
+			- random fegyver ellopása:
+				verekedésnél++
 		2. elfutsz
    			idegállapot++
 		3. meghalsz
-	- random fegyver ellopása:
-		verekedésnél++
+	
 zámolyi buszmegálló
 	- nyugdíjasokkal vitatkozás:
 		idegállapot +30
@@ -59,7 +59,7 @@ zámolyi buszmegálló
 			random elesel (idegállapot+) vagy szép utad lesz (életkedv+)
 vidéki
 	- cigi kéregetés:
-		 adsz (-pénz)/nem adsz -> Lucifer XXX shop előtt megtámadnak 
+		 adsz (pénz-)/nem adsz -> Lucifer XXX shop előtt megtámadnak 
 
 Kondi
 	- vehetsz kokszot -> verekedés+, pénz-, életkedv+, Anna könnyebben adja oda a tel.számát
@@ -78,7 +78,7 @@ XXX shop
 	HA vidékiben nem adsz pénzt, megtámadnak
 				 vesztesz: 
 					életkedv---
-					idegállapot+++
+					idegállapot++
 					kórházba (70-30)
 				ha fegyver + bogyó -> nyersz:
 					pénz++
