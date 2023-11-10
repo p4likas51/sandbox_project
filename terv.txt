@@ -78,7 +78,7 @@ XXX shop
 	HA vidékiben nem adsz pénzt, megtámadnak
 				 vesztesz: 
 					életkedv---
-					idegállapot++
+					idegállapot+++
 					kórházba (70-30)
 				ha fegyver + bogyó -> nyersz:
 					pénz++
