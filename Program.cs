@@ -1,7 +1,10 @@
 ﻿namespace Sandbox_project
 {
-    internal partial class Program
+    internal static partial class Program
     {
+        static int eletkedv = 70;
+        static int veralkoholszint = 0;
+        static int idegallapot = 0;
         static void Main(string[] args)
         {
 
