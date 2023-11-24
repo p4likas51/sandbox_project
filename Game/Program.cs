@@ -6,20 +6,47 @@
         static int veralkoholszint = 0;
         static int idegallapot = 0;
         static int penz = 2000;
+        static bool megtamadnak = false;
+        static bool bogyok = false;
         static void Main(string[] args)
         {
             if (foMenu() == 0)
             {
-                // Ide kerül az első helyszín függvénye, Jelen esetben: Bálint háza pl: BalintHaz()
+                int videki_esemeny = VidekiEsemeny();
+                if (videki_esemeny == 0)
+                {
+                    penz -= 200;
+                }
+                else
+                {
+                    megtamadnak = true;
+                }
+                int videki = Videki();
+                switch (videki) 
+                {
+                    case 0:
+                        int kondiesemeny = KondiEsemeny();
+                        if (kondiesemeny == 0)
+                        {
+                            penz -= 1000;
+                            bogyok = true;
+                        }
+                        int kondi = Kondi();
+                        
+                        break;
+                }
+
+
             }
         }
         public static int Menu(string szoveg, string[] valasztasok)
         {
             int valasztottIndex = 0;
-            opciokMegjelenitese();
+            
             return programFut();
             void opciokMegjelenitese()
             {
+                
                 Console.WriteLine(szoveg);
                 for (int i = 0; i < valasztasok.Length; i++)
                 {
@@ -35,10 +62,8 @@
                     Console.WriteLine($"<< {jelenlegiPozicio} >>");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                if (valasztasok.Length > 1)
-                {
-                    Console.Write($"\nÉletkedv: {eletkedv}\nIdegállapot: {idegallapot}\nVéralkoholszint: {veralkoholszint}\nPénz: {penz}");
-                }
+                Console.Write($"\nÉletkedv: {eletkedv}\nIdegállapot: {idegallapot}\nVéralkoholszint: {veralkoholszint}\nPénz: {penz}");
+                
 
             }
             int programFut()
