@@ -37,6 +37,13 @@ namespace Game
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
+        public static int DohiKunyeralas()
+        {
+            string szoveg = "Jelenlegi helyzet: A hitel miatt nagyon kell a pénz, ezért már a boltban is kunyerálsz.";
+            string[] valasztasok = { "Vidéki" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
         public static int Dohi()
         {
             string szoveg = "Jelenlegi helyzet: Dohi";
