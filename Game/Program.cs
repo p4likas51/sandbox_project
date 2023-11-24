@@ -10,13 +10,33 @@
         {
             if (foMenu() == 0)
             {
-                // Ide kerül az első helyszín függvénye, Jelen esetben: Bálint háza pl: BalintHaz()
+                int index = JedlikBejarat();
+                if (index == 0)
+                {
+                    FazakasTerem();
+                }
+                else if (index == 1)
+                {
+                    Vinczeterem();
+                }
+                else
+                {
+                    CTerem();
+                }
+                int padlásOrNot = CTerem();
+                if (padlásOrNot == 0)
+                {
+                    Folyoso();
+                }
+                else
+                {
+                    cPadlas();
+                }
             }
         }
         public static int Menu(string szoveg, string[] valasztasok)
         {
             int valasztottIndex = 0;
-            opciokMegjelenitese();
             return programFut();
             void opciokMegjelenitese()
             {
