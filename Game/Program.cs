@@ -8,33 +8,91 @@
         static int penz = 2000;
         static bool megtamadnak = false;
         static bool bogyok = false;
+        static bool fomenu = true;
         static void Main(string[] args)
         {
+            Random rand = new Random();
             if (foMenu() == 0)
             {
-                int videki_esemeny = VidekiEsemeny();
-                if (videki_esemeny == 0)
+                fomenu = false;
+                bool tortenesVideki = true;
+                if (tortenesVideki)
                 {
-                    penz -= 200;
+                    int videki_esemeny = VidekiEsemeny();
+                    tortenesVideki = false;
+                    if (videki_esemeny == 0)
+                    {
+                        penz -= 200;
+                    }
+                    else
+                    {
+                        megtamadnak = true;
+                    }
                 }
-                else
+                bool tortenesKondi = true;
+                bool tortenesDohi = true;
+                do
                 {
-                    megtamadnak = true;
-                }
-                int videki = Videki();
-                switch (videki) 
-                {
-                    case 0:
-                        int kondiesemeny = KondiEsemeny();
-                        if (kondiesemeny == 0)
-                        {
-                            penz -= 1000;
-                            bogyok = true;
-                        }
-                        int kondi = Kondi();
-                        
-                        break;
-                }
+                    int videki = Videki();
+                    switch (videki)
+                    {
+                        case 0:
+                            if (tortenesKondi)
+                            {
+                                int kondiesemeny = KondiEsemeny();
+                                tortenesKondi = false;
+                                if (kondiesemeny == 0)
+                                {
+                                    penz -= 1000;
+                                    bogyok = true;
+                                }
+
+                            }
+                            int kondi = Kondi();
+                            break;
+                        case 1:
+                            if (tortenesDohi)
+                            {
+                                int dohiKunyeralasEsemeny = DohiKunyeralas();
+                                if (dohiKunyeralasEsemeny == 0)
+                                {
+                                    if (rand.Next(0, 101) >= 70)
+                                    {
+                                        penz += 500;
+                                    }
+                                    else
+                                    {
+                                        eletkedv -= 20;
+                                    }
+                                }
+                                tortenesDohi = false;
+                            }
+                            int dohiBolt;
+                            do
+                            {
+                                dohiBolt = DohiBolt();
+                                switch (dohiBolt)
+                                {
+                                    case 0:
+                                        idegallapot -= 20;
+                                        eletkedv += 20;
+                                        veralkoholszint += 20;
+                                        penz -= 500;
+                                        break;
+                                    case 1:
+                                        idegallapot -= 30;
+                                        penz -= 1000;
+                                        eletkedv += 30;
+                                        break;
+                                }
+                            } while (dohiBolt != 2);
+                            int dohi = Dohi();
+                            break;
+                    }
+                } while (true);
+                    
+                
+                
 
 
             }
@@ -62,9 +120,14 @@
                     Console.WriteLine($"<< {jelenlegiPozicio} >>");
                     Console.ForegroundColor = ConsoleColor.White;
                 }
-                Console.Write($"\nÉletkedv: {eletkedv}\nIdegállapot: {idegallapot}\nVéralkoholszint: {veralkoholszint}\nPénz: {penz}");
+                if (fomenu == false)
+                {
+                    statisztikak(eletkedv, 10, "Életkedv");
+                    statisztikak(idegallapot, 12, "Idegállapot");
+                    statisztikak(veralkoholszint, 14, "Véralkoholszint");
+                    Console.WriteLine($"\nPénz: {penz}");
+                }
                 
-
             }
             int programFut()
             {
@@ -97,6 +160,36 @@
             }
 
         }
+        public static void statisztikak(int value, int color, string stat)
+        {
+            Console.WriteLine($"\n{stat}:\n");
+            if (value > 100)
+            {
+                value = 100;
+            }
+            else if (value < 0)
+            {
+                value = 0;
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                Console.BackgroundColor = (ConsoleColor)color;
+                if (i >= (value / 5))
+                {
+                    Console.BackgroundColor = ConsoleColor.White;
+                }
+                if (i == 10)
+                {
+                    Console.ForegroundColor = ConsoleColor.Black;
+                    Console.Write(value);
+                    Console.ForegroundColor= ConsoleColor.White;
+                }
+                Console.Write(" ");
+                Console.BackgroundColor = ConsoleColor.Black;
+            }
+            Console.WriteLine();
+        }
+
         public static int foMenu()
         {
             string szoveg = @"
@@ -108,7 +201,7 @@
     | $$  \ $$ /$$__  $$| $$| $$| $$  | $$  | $$ /$$            | $$_____/| $$  | $$| $$  | $$            | $$  | $$ /$$__  $$| $$  | $$      | $$ /$$__  $$    
     | $$$$$$$/|  $$$$$$$| $$| $$| $$  | $$  |  $$$$/            |  $$$$$$$|  $$$$$$$|  $$$$$$$            | $$  | $$|  $$$$$$$| $$$$$$$/      | $$|  $$$$$$$ /$$
     |_______/  \_______/|__/|__/|__/  |__/   \___/               \_______/ \____  $$ \____  $$            |__/  |__/ \_______/| $$____/       | $$ \_______/|__/
-                                                                             /$$  \ $$ /$$  | $$                                | $$       /$$  | $$              
+                                                                           /$$  \ $$ /$$  | $$                                | $$       /$$  | $$              
                                                                           |  $$$$$$/|  $$$$$$/                                | $$      |  $$$$$$/              
                                                                            \______/  \______/                                 |__/       \______/               
             ";

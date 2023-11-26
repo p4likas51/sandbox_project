@@ -8,6 +8,7 @@ namespace Game
 {
     internal partial class Program
     {
+        Random rand = new Random();
         public static int VidekiEsemeny()
         {
             string szoveg = "Jelenlegi helyzet: Videkinél kéreget egy napsütötte ember. Adsz neki pénzt?";
@@ -20,6 +21,13 @@ namespace Game
 
             string szoveg = "Jelenlegi helyzet: Videki";
             string[] valasztasok = { "Kondi", "Dohi", "Vasútállomás aluljáró" };
+            if (veralkoholszint >= 70)
+            {
+                List<string> list = new();
+                list.AddRange(valasztasok);
+                list.Add("Lucifer XXX Shop");
+                valasztasok = list.ToArray();
+            }
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
@@ -39,8 +47,15 @@ namespace Game
         }
         public static int DohiKunyeralas()
         {
-            string szoveg = "Jelenlegi helyzet: A hitel miatt nagyon kell a pénz, ezért már a boltban is kunyerálsz.";
-            string[] valasztasok = { "Vidéki" };
+            string szoveg = "Jelenlegi helyzet: A hitel miatt megfordul a fejedben, hogy kihasználva jóképűséged szerezz egy kis pénzt.";
+            string[] valasztasok = { "Kunyerálás", "Gondolat elhesegetése" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
+        public static int DohiBolt()
+        {
+            string szoveg = "Jelenlegi helyzet: Dohi.";
+            string[] valasztasok = { "Alkohol vétel", "Cigi vétel", "Nem kell semmi" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
