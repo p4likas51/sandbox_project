@@ -10,15 +10,48 @@
         {
             if (foMenu() == 0)
             {
-                int balinthaz = Balinthaz();
-                if (balinthaz == 0)
+                bool balinthaztortenes = true;
+                if (balinthaztortenes)
                 {
-                    int makviragkocsma = Makviragkocsma();
+                int balinthazesemeny = BalinthazEsemeny();
+                    balinthaztortenes = false;
+                    if (balinthazesemeny == 0)
+                    {
+                        eletkedv += 20;
+                    }                    
                 }
-                else
+                do
                 {
-                    int zamolyibuszmeg = Gyorzamolyibuszmeg();
-                }
+                    int balinthaz = Balinthaz();
+                    if (balinthaz == 0)
+                    {                        
+                        bool kocsma;
+                        do
+                        {
+                            kocsma = true;
+                            int makviragkocsma = Makviragkocsma();
+                            if (makviragkocsma == 0)
+                            {
+                                int viragagyas = Viragagyas();
+                            }
+                            else if (makviragkocsma == 1)
+                            {
+                                int wc = WC();
+                            }
+                            else if (makviragkocsma == 2)
+                            {
+                                int dunaszeg = Dunaszeg();
+                            }
+                            else
+                            {
+                                kocsma = false;
+                            }
+                        } while (kocsma);
+                        
+                    }
+                    
+                } while (true);
+                
 
             }
         }

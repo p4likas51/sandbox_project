@@ -24,25 +24,34 @@ namespace Game
             return valasztottIndex;
         }
 
+
+        public static int MakviragkocsmaEsemeny()
+        {
+            string szoveg = "Jelenlegi helyzet: Bálint a kocsmában sóvárog egy hideg korsó sör után és már habzik a szája az izgalomtól. A nagy tartózás ellenére fontolgatja, hogy igyon. Kérsz egy korsó sört?";
+            string[] valasztasok = { "Igen", "Nem" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
         public static int Makviragkocsma()
         {
             string szoveg = "Jelenlegi helyzet: Mákvirág kocsma";
-            string[] valasztasok = { "Virágágyás", "Huggyozda(WC)", "Dunaszeg", "Vissza"};
+            string[] valasztasok = { "Virágágyás", "Huggyozda(WC)", "Dunaszeg", "Bálint háza"};
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
 
-        public static int WCEsemeny()
+        public static int Viragagyas()
         {
-            string szoveg = "Jelenlegi helyzet: Mákvirág kocsma huggyozdája";
-            string[] valasztasok = { "Vissza" };
+            string szoveg = "Jelenlegi helyzet: Mákvirágkocsma mögöti virágágyás";
+            string[] valasztasok = { "Mákvirág kocsma" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
+
         public static int WC()
         {
             string szoveg = "Jelenlegi helyzet: Mákvirág kocsma huggyozdája";
-            string[] valasztasok = {"Vissza"};
+            string[] valasztasok = {"Mákvirág kocsma"};
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
@@ -50,7 +59,7 @@ namespace Game
         public static int Dunaszeg()
         {
             string szoveg = "Jelenlegi helyzet: Dunaszeg";
-            string[] valasztasok = { "Fazakas sufnija", "Győrzámolyi megálló", "Vissza"};
+            string[] valasztasok = { "Fazakas sufnija", "Győrzámolyi buszmegálló", "Mákvirág kocsma"};
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
@@ -58,22 +67,14 @@ namespace Game
         public static int Fazakassufni()
         {
             string szoveg = "Jelenlegi helyzet: Fazakas sufnija";
-            string[] valasztasok = {"Vissza"};
-            int valasztottIndex = Menu(szoveg, valasztasok);
-            return valasztottIndex;
-        }
-
-        public static int GyorzamolyibuszmegEsemeny()
-        {
-            string szoveg = "Jelenlegi helyzet: Győrzámolyi buszmegállóban várakozol de pár nyugger nem bír magával és kiengedi világfájdalmát. Sőt be is szólnak, amiért egy kisebb idegsokkot kaptál.";
-            string[] valasztasok = { "Vidéki", "Bálint háza", "Vissza" };
+            string[] valasztasok = {"Dunaszeg"};
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
         public static int Gyorzamolyibuszmeg()
         {
             string szoveg = "Jelenlegi helyzet: Győrzámolyi buszmegálló";
-            string[] valasztasok = {"Vidéki", "Bálint háza", "Vissza"};
+            string[] valasztasok = {"Vidéki", "Bálint háza", "Mákvirág kocsma" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
