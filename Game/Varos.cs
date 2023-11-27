@@ -41,7 +41,7 @@ namespace Game
         public static int Kondi()
         {
             string szoveg = "Jelenlegi helyzet: Kondi";
-            string[] valasztasok = { "Vidéki" };
+            string[] valasztasok = { "Vidéki", "Valami"};
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
@@ -62,6 +62,13 @@ namespace Game
         public static int Dohi()
         {
             string szoveg = "Jelenlegi helyzet: Dohi";
+            string[] valasztasok = { "Vidéki" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
+        public static int LuciferShop()
+        {
+            string szoveg = "Jelenlegi helyzet: Lucifer XXX Shop";
             string[] valasztasok = { "Vidéki" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;

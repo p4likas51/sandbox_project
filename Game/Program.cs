@@ -48,7 +48,6 @@
                                 }
 
                             }
-                            int kondi = Kondi();
                             break;
                         case 1:
                             if (tortenesDohi)
@@ -88,7 +87,11 @@
                             } while (dohiBolt != 2);
                             int dohi = Dohi();
                             break;
+                        case 2:
+                            break;
+                                
                     }
+                    
                 } while (true);
                     
                 
