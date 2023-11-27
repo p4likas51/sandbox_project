@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,17 +12,21 @@ namespace Game
     {
         public static int JedlikBejarat()
         {
-            string szoveg = ("Jelenlegi helyzet: Jedlik bejárata");
+            Console.Clear();
+            string szoveg = ("\nJelenlegi helyzet: Jedlik bejárata");
+            Console.WriteLine(szoveg);
             Random randomEvent = new Random();
             int randomNumber = randomEvent.Next(0, 2);
             if (randomNumber == 0)
             {
-                Console.WriteLine("Találkozol a biztonsági őrrel aki megdorogál a cigiszagod miatt");
+                Console.WriteLine("\nTalálkozol a biztonsági őrrel aki megdorogál a cigiszagod miatt");
+                Console.ReadKey();
                 idegallapot += 5;
                 randomNumber = randomEvent.Next(0, 101);
                 if (randomNumber <= 15)
                 {
-                    Console.WriteLine("Biztiboy megmotoz téged és minden fegyveredet elveszi");
+                    Console.WriteLine("\nBiztiboy megmotoz téged és minden fegyveredet elveszi");
+                    Console.ReadKey();
                     //fegyverek elvesztése
                 }
             }
@@ -35,16 +40,20 @@ namespace Game
         }
         public static int FazakasTerem()
         {
-            string szoveg = ("Jelenlegi helyzet: Fazakas Miklós matekterme");
+            Console.Clear();
+            string szoveg = ("\nJelenlegi helyzet: Fazakas Miklós matekterme");
+            Console.WriteLine(szoveg);
             if (true) //Majd a vidéki sufnitól fogg függeni
             {
-                Console.WriteLine("Fazakas Miklós mérges mert elfutottál. Látni sem akar ezért kiküld óráról.");
+                Console.WriteLine("\nFazakas Miklós mérges mert elfutottál. Látni sem akar ezért kiküld óráról.");
                 eletkedv += 5;
+                Console.ReadKey();
             }
             else
             {
-                Console.WriteLine("Kínok között de nagy nehezen sikerült átvészelni az óráját.");
+                Console.WriteLine("\nKínok között de nagy nehezen sikerült átvészelni az óráját.");
                 eletkedv -= 5;
+                Console.ReadKey();
             }
             string[] valasztasok = { "Folyosó" };
             int valasztottIndex = Menu(szoveg, valasztasok);
@@ -52,12 +61,15 @@ namespace Game
         }
         public static int Vinczeterem()
         {
-            string szoveg = ("Jelenlegi helyzet: PLC terem Vincze Flórián társaságában");
+            Console.Clear();
+            string szoveg = ("\nJelenlegi helyzet: PLC terem Vincze Flórián társaságában");
+            Console.WriteLine(szoveg);
             Random randomEvent = new Random();
             int randomNumber = randomEvent.Next(0, 101);
             if (randomNumber <= 25)
             {
-                Console.WriteLine("Vincze Flórián úgy dönt hogy ma nem akar izmozni elmarad a tanóra.");
+                Console.WriteLine("\nVincze Flórián úgy dönt hogy ma nem akar izmozni elmarad a tanóra.");
+                Console.ReadKey();
             }
             else
             {
@@ -66,12 +78,14 @@ namespace Game
                 palitolLopottFunction();
                 if (palitolLopottIndex == 0)
                 {
-                    Console.WriteLine("Vincze Flórián elmondja hogy a B épületben a mai nap nem működnek a kamerák - támadt egy csalafinta ötleted.");
+                    Console.WriteLine("\nVincze Flórián elmondja hogy a B épületben a mai nap nem működnek a kamerák - támadt egy csalafinta ötleted.");
+                    Console.ReadKey();
                     // 100%-ra változtatja a multiméter lopás esélyét
                 }
                 if (palitolLopottIndex == 1)
                 {
-                    Console.WriteLine("Megvolt a chilles kis óra csak a szokásos.");
+                    Console.WriteLine("\nMegvolt a chilles kis óra csak a szokásos.");
+                    Console.ReadKey();
                 }
                 void valaszthatoEsemeny()
                 {
@@ -127,20 +141,32 @@ namespace Game
         }
         public static int CTerem()
         {
+            Console.Clear();
             bool voltAmmonia = false;
-            string szoveg = ("Jelenlegi helyzet: A Híres C# terem minden pompájában");
+            bool voltOra = false;
+            string szoveg = ("\nJelenlegi helyzet: A Híres C# terem minden pompájában");
+            Console.WriteLine(szoveg);
             Random randomEvent = new Random();
             int randomNumber = randomEvent.Next(0, 2);
-            if (randomNumber == 0 && voltAmmonia == false)
+            if (randomNumber == 0 && voltAmmonia == false && voltOra == false)
             {
-                Console.WriteLine("Ahogyan a terem közelébe érsz érzed ahogyan a tudőt megtelik ammónigázzal és megszédülsz. A nap folyamán gyengébnek fogod magad érezni.");
+                Console.WriteLine("\nAhogyan a terem közelébe érsz érzed ahogyan a tudőt megtelik ammónigázzal és megszédülsz. A nap folyamán gyengébnek fogod magad érezni.");
+                Console.ReadKey();
                 voltAmmonia = true;
                 //kihatással lesz az endgame fightra
-                Console.WriteLine("Kis híján de túlélted a progot érvágás nélkül.");
+                Console.WriteLine("\nKis híján de túlélted a progot érvágás nélkül.");
+                voltOra = true;
+                Console.ReadKey();
+            }
+            else if (voltOra == false)
+            {
+                Console.WriteLine("\nKis híján de túlélted a progot érvágás nélkül.");
+                voltOra = true;
+                Console.ReadKey();
             }
             else
             {
-                Console.WriteLine("Kis híján de túlélted a progot érvágás nélkül.");
+                Folyoso();
             }
             string[] valasztasok = { "Folyosó", "Padlás" };
             int valasztottIndex = Menu(szoveg, valasztasok);
@@ -148,13 +174,17 @@ namespace Game
         }
         static void cPadlas() 
         {
+            Console.Clear();
             bool voltTömő = false;
-            Console.WriteLine("Jelenlegi helyzet: Az átkozott padlás öltöző a 41-es terem fölött.");
+            string szoveg = ("\nJelenlegi helyzet: Az átkozott padlás öltöző a 41-es terem fölött.");
+            Console.WriteLine(szoveg);
             if (voltTömő == false)
             {
-                Console.WriteLine("Találtál egy kósza tömőt. Nem tudod hogy honnan van és milyen de a biztonság kedvéért elrakod.");
+                Console.WriteLine("\nTaláltál egy kósza tömőt. Nem tudod hogy honnan van és milyen de a biztonság kedvéért elrakod.");
+                Console.ReadKey();
                 //inventoryba megy
                 voltTömő = true;
+                CTerem();
             }
             else
             {
@@ -168,17 +198,21 @@ namespace Game
         }
         public static int Folyoso()
         {
-            string szoveg = ("Jelenlegi helyzet: Folyosó");
+            Console.Clear();
+            string szoveg = ("\nJelenlegi helyzet: Folyosó");
+            Console.WriteLine(szoveg);
             Random randomEvent = new Random();
             int randomNumber = randomEvent.Next(0, 101);
             if (randomNumber <= 20)
             {
-                Console.WriteLine("Találtál aprót elhajítva a földön. Elég hanyag volt előző gazdája, te sokkal jobban bánsz majd vele.");
+                Console.WriteLine("\nTaláltál aprót elhajítva a földön. Elég hanyag volt előző gazdája, te sokkal jobban bánsz majd vele.");
+                Console.ReadKey();
                 //pénz ++
             }
             else
             {
-                Console.WriteLine("Majdnem infarktust kapsz mikor a folyón megpillantod Fortuna Edinát. Megközelít és kéjen rádmosolyog kapa fogaival");
+                Console.WriteLine("\nMajdnem infarktust kapsz mikor a folyosón megpillantod Fortuna Edinát. Megközelít és kéjen rádmosolyog kapa fogaival");
+                Console.ReadKey();
                 eletkedv -= 5;
                 idegallapot += 5;
             }

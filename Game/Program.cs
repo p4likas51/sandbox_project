@@ -14,24 +14,26 @@
                 if (index == 0)
                 {
                     FazakasTerem();
+                    Folyoso();
                 }
                 else if (index == 1)
                 {
                     Vinczeterem();
-                }
-                else
-                {
-                    CTerem();
-                }
-                int padlásOrNot = CTerem();
-                if (padlásOrNot == 0)
-                {
                     Folyoso();
                 }
                 else
                 {
-                    cPadlas();
+                    int padlásOrNot = CTerem();
+                    if (padlásOrNot == 0)
+                    {
+                        Folyoso();
+                    }
+                    else
+                    {
+                        cPadlas();
+                    }
                 }
+
             }
         }
         public static int Menu(string szoveg, string[] valasztasok)
