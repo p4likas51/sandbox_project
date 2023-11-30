@@ -18,7 +18,7 @@
                 bool tortenesVideki = true;
                 if (tortenesVideki)
                 {
-                    int videki_esemeny = VidekiEsemeny();
+                    int videki_esemeny = VidekiEsemeny(200);
                     tortenesVideki = false;
                     if (videki_esemeny == 0)
                     {
@@ -39,7 +39,7 @@
                         case 0:
                             if (tortenesKondi)
                             {
-                                int kondiesemeny = KondiEsemeny();
+                                int kondiesemeny = KondiEsemeny(1000);
                                 tortenesKondi = false;
                                 if (kondiesemeny == 0)
                                 {
@@ -48,6 +48,7 @@
                                 }
 
                             }
+                            int kondi = Kondi();
                             break;
                         case 1:
                             if (tortenesDohi)
@@ -73,15 +74,21 @@
                                 switch (dohiBolt)
                                 {
                                     case 0:
-                                        idegallapot -= 20;
-                                        eletkedv += 20;
-                                        veralkoholszint += 20;
-                                        penz -= 500;
+                                        if (ElfogyPenz(0, 500) != 1)
+                                        {
+                                            idegallapot -= 20;
+                                            eletkedv += 20;
+                                            veralkoholszint += 20;
+                                            penz -= 500;
+                                        }
                                         break;
                                     case 1:
-                                        idegallapot -= 30;
-                                        penz -= 1000;
-                                        eletkedv += 30;
+                                        if (ElfogyPenz(0, 1000) != 1)
+                                        {
+                                            idegallapot -= 30;
+                                            penz -= 1000;
+                                            eletkedv += 30;
+                                        }
                                         break;
                                 }
                             } while (dohiBolt != 2);
