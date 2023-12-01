@@ -15,6 +15,7 @@ namespace Game
             string[] valasztasok = {"Igen", "Nem"};
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
+            
         }
         public static int Balinthaz()
         {
@@ -25,10 +26,13 @@ namespace Game
         }
 
 
+
+
         public static int MakviragkocsmaEsemeny()
         {
-            string szoveg = "Jelenlegi helyzet: Bálint a kocsmában sóvárog egy hideg korsó sör után és már habzik a szája az izgalomtól. A nagy tartózás ellenére fontolgatja, hogy igyon. Kérsz egy korsó sört?";
-            string[] valasztasok = { "Igen", "Nem" };
+            string szoveg = "Jelenlegi helyzet: Bálint a kocsmában sóvárog egy hideg korsó sör után és már habzik a szája az izgalomtól. A nagy tartózás ellenére fontolgatja, hogy igyon. Kérsz egy korsó sört? " +
+                "\nHa esetleg nem akarsz inni, beszélgethetsz a helyi alkoholistákkal. Vigyázz, akár veszélyes kimenetelű is lehet!";
+            string[] valasztasok = { "Igen", "Nem", "Beszélgetés az alkeszekkel" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
@@ -40,6 +44,15 @@ namespace Game
             return valasztottIndex;
         }
 
+
+
+        public static int ViragagyasEsemeny()
+        {
+            string szoveg = "Jelenlegi helyzet: Bálint miután kivánszorgott valahogyan a virágágyásba, bevetette magát a dzsumbujba. Esetleg egy alvás nem ártana neki. Szeretnél aludni?";
+            string[] valasztasok = { "Igen", "Nem" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
         public static int Viragagyas()
         {
             string szoveg = "Jelenlegi helyzet: Mákvirágkocsma mögöti virágágyás";
@@ -48,6 +61,14 @@ namespace Game
             return valasztottIndex;
         }
 
+
+        public static int WCEsemeny()
+        {
+            string szoveg = "Jelenlegi helyzet: A kocsma wc-je elég lepusztult és sötét van. Pintér már nagyon pang, okádnia is kell de még kardozni is van kedve. Melyiket csinálnád szívesebben?";
+            string[] valasztasok = { "Kardozás", "Hányás" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
         public static int WC()
         {
             string szoveg = "Jelenlegi helyzet: Mákvirág kocsma huggyozdája";
@@ -56,6 +77,14 @@ namespace Game
             return valasztottIndex;
         }
 
+
+        //public static int DunaszegEsemeny()
+        //{
+        //    string szoveg = "Jelenlegi helyzet: Miután úgy gondoltad, hogy neked mindenáron Dunaszegre kell menni gyanúsan sétálsz az utcákon.";
+        //    string[] valasztasok = { "Fazakas sufnija", "Győrzámolyi buszmegálló", "Mákvirág kocsma" };
+        //    int valasztottIndex = Menu(szoveg, valasztasok);
+        //    return valasztottIndex;
+        //}
         public static int Dunaszeg()
         {
             string szoveg = "Jelenlegi helyzet: Dunaszeg";
