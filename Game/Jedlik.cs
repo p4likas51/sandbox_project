@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Game
 {
@@ -79,8 +80,8 @@ namespace Game
                 if (palitolLopottIndex == 0)
                 {
                     Console.WriteLine("\nVincze Flórián elmondja hogy a B épületben a mai nap nem működnek a kamerák - támadt egy csalafinta ötleted.");
+                    multiMeterChance = 100;
                     Console.ReadKey();
-                    // 100%-ra változtatja a multiméter lopás esélyét
                 }
                 if (palitolLopottIndex == 1)
                 {
@@ -138,6 +139,7 @@ namespace Game
             string[] valasztasok = { "Folyosó" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
+
         }
         public static int CTerem()
         {
@@ -217,6 +219,224 @@ namespace Game
                 idegallapot += 5;
             }
             string[] valasztasok = { "Büfé", "Jedlik wéce", "B épület átjáró" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
+
+        public static void Bufe()
+        {
+            Console.WriteLine("Work in progress, choose else");
+            //cseszett hosszú párbeszéd meg kurva sok if
+            Folyoso();
+        }
+        public static int JedlikWC()
+        {
+            string choice;
+            int Value;
+            Console.Clear();
+            string szoveg = ("\nJelenlegi helyzet: Jedlik WC");
+            Console.WriteLine(szoveg);
+            do
+            {
+                Console.WriteLine("Beléptél a földi pokolba ahol minden fajta nemi betegség megtalálható - a jedlik véce- mit teszel? " +
+                    "\n1.Hotbox " +
+                    "\n2.Elengeded a hugyhólyagodat aztán jólvanazúgy");
+                choice = Console.ReadLine();
+                int.TryParse(choice, out int value);
+                Value = value;
+            } while (Value != 1 || Value != 2);
+
+            if (Value == 1) //inventoryba van cigi
+            {
+                Console.WriteLine("Tiszta élvezettel telefújtad az egész budoir helységét rákkeltő füsttel és kielégítve érzed magad.");
+                eletkedv += 5;
+                Random randomEvent = new Random();
+                int randomNumber = randomEvent.Next(0, 101);
+                if (randomNumber <= 40)
+                {
+                    Console.WriteLine("Tündike éppen a bagarellózásod közben jött be kéjkedni a férfi mellékhelységbe. Házirend szegésedet jelentette a hologramm igazgatónak aki kiküld az iskolából");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Úgy döntöttél hogy a házirendet betartó talpnyaló leszel és a WC-t arra használod amire kitalálták. Egy kifejezetten jót hugyoztál");
+                idegallapot -= 5;
+            }
+            string[] valasztasok = { "Büfé", "B épület átjáró" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
+        public static int BFolyoso() 
+        {
+            Console.Clear();
+            string szoveg = ("\nJelenlegi helyzet: B épület-hez hátsó kapu");
+            Console.WriteLine(szoveg);
+            Random randomEvent = new Random();
+            int randomNumber = randomEvent.Next(0, 101);
+            if (randomNumber <= 40)
+            {
+                Console.WriteLine("Ahogyan elkezdesz közeledni az önműködő pokolkapu felé már távolról látod hogy itt valami sántít. Itt bizony megint nincs nyitva a hátsó kapu." +
+                    "\nRájössz hogy most meg kell kerülnöd a fél világot és kis híján agygörcsöt kapsz");
+                idegallapot += 5;
+            }
+            else
+            {
+                Console.WriteLine("Az iskola vezetőségének sikerült megnyomnia a varázsgombot és ki tudott engedni a kapun.");
+            }
+            string[] valasztasok = { "Tesi öltöző", "Szűcs Gábor terem" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
+        public static int TesiOltozo() 
+        {
+            Console.Clear();
+            string szoveg = ("\nJelenlegi helyzet: Testnevelés öltöző");
+            Console.WriteLine(szoveg);
+            Random randomEvent = new Random();
+            int randomNumber = randomEvent.Next(0, 101);
+            bool voltOltozes = false;
+            if(randomNumber <=50 && voltOltozes == false)
+            {
+                Console.WriteLine("Benjámin megdícséri hogy igazán jól esik neki a gyatádon keresztül látszódó férfiasságod. Ez örömmel tölt el");
+                voltOltozes = true;
+                eletkedv += 5;
+            }
+            else if(randomNumber >=50 && voltOltozes == false)
+            {
+                Console.WriteLine("Hallod ahogy Olivér az öltöző másik feléből kijelenti álláspontját miszerint az elektromos roller a király." +
+                    "\nEnnek hallatán hirtelen lyukat tudnál ütni a falba");
+                voltOltozes = true;
+                eletkedv -= 5;
+            }
+            else
+            {
+                Console.WriteLine("Ismét a tesi öltözőbe találod magadat és hirtelem megszólal egy hang a jobb füledből." +
+                    "\n'Mi a faszért akarsz megint bemenni oda hát megőrültél?'" +
+                    "\nElsötétedik a világ és hirtelen kint vagy a Jedlikből");
+            }
+            string[] valasztasok = { "Tesi terem", "Szűcs Gábor terem" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
+        public static int TesiTerem()
+        {
+            Console.Clear();
+            string szoveg = ("\nJelenlegi helyzet: Testnevelés öltöző");
+            Console.WriteLine(szoveg);
+            string choice;
+            int Value;
+            int Roplabda = 0;
+            do
+            {
+                Console.WriteLine("Ahogyan elsuhansz a ping-pong asztalok mellett megpillantod Németh Ádám-ot és a hatalmas bicepszeit. Zavartságodban gondolkozol hogy mi tévő legyél." +
+                    "\n1.Megdícséred a cipőjét" +
+                    "\n2.Elpirulsz hatalmas ágyúi láttán és csöndben maradsz");
+                choice = Console.ReadLine();
+                int.TryParse(choice, out int value);
+                Value = value;
+            } while (Value != 1 || Value != 2);
+            if (Value == 1)
+            {
+                Console.WriteLine("Németh Ádám nagyon hálás dicséreted hallatán és viszonozza a kedves szavakat.");
+                eletkedv += 5;
+                Roplabda -= 1;
+            }
+            else
+            {
+                Roplabda += 1;
+            }
+            Console.WriteLine("Ahogyan belépsz a terembe meglátod a borzasztó röplabda hálókat. Már tudod mi következik" +
+                "\nNagyra táguló bociszemekkel kérleled Németh Ádámot hogy had engedje el ezt most így." +
+                "\nA tanárúr mélyen gondolkodásba esik");
+            if (Roplabda == -1)
+            {
+                Console.WriteLine("Először kételkedsz sikeredben, de mivel megdícsérted a lépőjét kegyelmes veled szemben");
+            }
+            else
+            {
+                Console.WriteLine("Hosszú gondolkodás után úgy dönt hogy jóból is megárt a sok és ma bármi is történjék izmozni kell.");
+                idegallapot += 5;
+            }
+            string[] valasztasok = { "Hazamész a picsába", "Szűcs Gábor terem" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
+        public static int SZGTerem()
+        {
+            Console.Clear();
+            string szoveg = ("\nJelenlegi helyzet: B7 Szűcs Gábor társaságában");
+            Console.WriteLine(szoveg);
+            Random randomEvent = new Random();
+            int randomNumber = randomEvent.Next(0, 101);
+            if (randomNumber <= 15) 
+            {
+                Console.WriteLine("A tanárúr bejött a terembe de mivel ennyit tervezett mára ezzel a lendülettel ki is ment.");
+            }
+            else
+            {
+                string choice;
+                int Value;
+                do
+                {
+                    Console.WriteLine("Mihejst belépsz a terembe szemrevételezed a sok elektronikai eszközt ami a teremben található." +
+                        "\n eszedbe jut hogy a mai nap nem működnke a kamerák, egy döntés áll elébe." +
+                        "\n1.Megpróbálod ellponi a multimétert." +
+                        "\n2.Inkább tanulmányozod a Karnough-táblát");
+                    choice = Console.ReadLine();
+                    int.TryParse(choice, out int value);
+                    Value = value;
+                } while (Value != 1 || Value != 2);
+                if (multiMeterChance == 100 && Value == 1)
+                {
+                    Console.WriteLine("Könnyedén elrakod a multimétert és teljes nyugodtsággodat megőrzöd annak tudatában hogy nincs bizonyíték.");
+                    //inventoryba multiméter
+                }
+                else if (multiMeterChance != 100 && Value == 1)
+                {
+                    Console.WriteLine("Hirtelen zsebrerakod a multimétert viszont fentáll a veszélye hogy a portás látta a kamerán. Szíved elkezd sietve verni");
+                    //inventoryba multiméter
+                    Random RandomCaught = new Random();
+                    int GettinCaught = RandomCaught.Next(0, 101);
+                    if(GettinCaught <= 30)
+                    {
+                        Console.WriteLine("Ahogyan vége van az órának megközelít a biztiboy és a hiányzó multimétert keresi rajtad." +
+                            "\nEgy gyors motozás után megtalálja és visszaveszi, valamint minden illegális tárgyat elkoboz tőled.");
+                        idegallapot += 30;
+                        //inventory-ból fegyver meg cigi meg tömő meg stb elveszik
+                    }
+                    else
+                    {
+                        Console.WriteLine("Szerencsére a portás éppen aludt a kamerákat meg nem volt kedve visszanézni. A multiméter a tiéd.");
+                        //inventoryba multiméter
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Már golyózik a szemed az igazság táblák miatt mikor hirtelen meghallod csengét és világi megkönnyebülésben részesedsz.");
+                }
+            }
+            string[] valasztasok = { "Hazamész a picsába", "Tesi öltöző" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
+        public static int JedlikKijarat()
+        {
+            Console.Clear();
+            string szoveg = ("\nJelenlegi helyzet: A Jedlik kijárata");
+            Console.WriteLine(szoveg);
+            Console.WriteLine("EZZZZAAAAAAAAAAAAAZZZZZZZZZZZ ÁÁÁÁÁÁÁÁÁÁÁÁÁÁ, VÉÉÉÉÉÉÉÉÉÉÉÉGREEEEE");
+            if (true) //attól fogg függeni adsz-e vidékiben cigit
+            {
+                Console.WriteLine("Hiába a nagy örömöd, hirtelen megtámadnak a genetikai hulladékok.");
+                if (true)  //attól függ van-e fegyver vagy steroid
+                {
+                    Console.WriteLine("Fölszívod magadat és elkalapálod az összeset." +
+                        "\nBosszúból minden értéküket ellopod");
+                    penz += 2000;
+                }
+            }
+            string[] valasztasok = { "Hazamész a picsába", "Tesi öltöző" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }

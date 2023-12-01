@@ -6,34 +6,71 @@
         static int veralkoholszint = 0;
         static int idegallapot = 0;
         static int penz = 2000;
+        static int multiMeterChance = 50;
+
         static void Main(string[] args)
         {
             if (foMenu() == 0)
             {
-                int index = JedlikBejarat();
-                if (index == 0)
+                int indexBejarat = JedlikBejarat();
+                if (indexBejarat == 0)
                 {
                     FazakasTerem();
-                    Folyoso();
                 }
-                else if (index == 1)
+                else if (indexBejarat == 1)
                 {
                     Vinczeterem();
-                    Folyoso();
                 }
                 else
                 {
                     int padlásOrNot = CTerem();
-                    if (padlásOrNot == 0)
-                    {
-                        Folyoso();
-                    }
-                    else
+                    if (padlásOrNot == 1)
                     {
                         cPadlas();
                     }
                 }
 
+                int indexFolyoso = Folyoso();
+                if (indexFolyoso == 0)
+                {
+                    Bufe();
+                }
+                else if (indexFolyoso == 1)
+                {
+                    JedlikWC();
+                }
+
+                int indexWC = JedlikWC();
+                if (indexWC == 0)
+                {
+                    Bufe();
+                }
+
+                int BIndex = BFolyoso();
+                if (BIndex == 0)
+                {
+                    int TesiIndex = TesiOltozo();
+                    if (TesiIndex == 0)
+                    {
+                        JedlikKijarat();
+                    }
+                    else
+                    {
+                        SZGTerem();
+                    }
+                }
+                else
+                {
+                    int SZGIndex = SZGTerem();
+                    if (SZGIndex == 0)
+                    {
+                        JedlikKijarat();
+                    }
+                    else
+                    {
+                        TesiOltozo();
+                    }
+                }
             }
         }
         public static int Menu(string szoveg, string[] valasztasok)
