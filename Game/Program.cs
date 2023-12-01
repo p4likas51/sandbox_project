@@ -33,6 +33,7 @@
                 bool tortenesKondi = true;
                 bool tortenesDohi = true;
                 bool tortenesAluljaro = true;
+                bool tortenesEuros = true;
                 do
                 {
                     int videki = Videki();
@@ -112,8 +113,12 @@
                                 switch (vasut)
                                 {
                                     case 1:
-                                        Console.WriteLine("jo");
-                                        Console.ReadLine();
+                                        if (tortenesEuros)
+                                        {
+                                            int taliOliverrel = EurosOliver();
+                                            tortenesEuros = false;
+                                        }
+                                       
                                         break;
                                     case 2:
                                         Console.WriteLine("jo");
