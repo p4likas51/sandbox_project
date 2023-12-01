@@ -2,13 +2,14 @@
 {
     internal partial class Program
     {
-        static int eletkedv = 70;
+        static int eletkedv = 0;
         static int veralkoholszint = 0;
-        static int idegallapot = 0;
-        static int penz = 2000;
+        static int idegallapot = 70;
+        static int penz = 4000;
         static bool megtamadnak = false;
         static bool bogyok = false;
         static bool fomenu = true;
+        static int fegyverek = 1;
         static void Main(string[] args)
         {
             Random rand = new Random();
@@ -31,6 +32,7 @@
                 }
                 bool tortenesKondi = true;
                 bool tortenesDohi = true;
+                bool tortenesAluljaro = true;
                 do
                 {
                     int videki = Videki();
@@ -95,6 +97,61 @@
                             int dohi = Dohi();
                             break;
                         case 2:
+                            if (tortenesAluljaro)
+                            {
+                                int aluljaroLopas = VasutLopas();
+                                if (aluljaroLopas == 0)
+                                {
+                                    penz += 500;
+                                }
+                                tortenesAluljaro = false;
+                            }
+                            int vasut = Vasut();
+                            do
+                            {
+                                switch (vasut)
+                                {
+                                    case 1:
+                                        Console.WriteLine("jo");
+                                        Console.ReadLine();
+                                        break;
+                                    case 2:
+                                        Console.WriteLine("jo");
+                                        Console.ReadLine();
+                                        break;
+                                }
+
+                            } while (vasut != 0);
+                            break;
+                        case 3:
+                            if (megtamadnak)
+                            {
+                                int tamadasXXXShop = LuciferShopTamadas();
+                                megtamadnak = false;
+                            }
+
+                            int XXXBolt;
+                            do
+                            {
+                                XXXBolt = LuciferShopBolt();
+                                switch (XXXBolt)
+                                {
+                                    case 0:
+                                        if (ElfogyPenz(0, 1500) != 1)
+                                        {
+                                            fegyverek++;
+                                            penz -= 1500;
+                                        }
+                                        break;
+                                    case 1:
+                                        if (ElfogyPenz(0, 1000) != 1)
+                                        {
+                                            penz -= 1000;
+                                            eletkedv += 30;
+                                        }
+                                        break;
+                                }
+                            } while(XXXBolt != 2);  
                             break;
                                 
                     }
