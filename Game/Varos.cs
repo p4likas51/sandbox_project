@@ -8,7 +8,7 @@ namespace Game
 {
     internal partial class Program
     {
-        Random rand = new Random();
+        
         public static int VidekiEsemeny(int cost)
         {
             string szoveg = "Jelenlegi helyzet: Videkinél kéreget egy napsütötte ember. Adsz neki pénzt?";
@@ -117,9 +117,14 @@ namespace Game
 ");
                 Console.ForegroundColor = ConsoleColor.White;
                 eletkedv = 0;
-                idegallapot += 30;
-                // KORHAZ KELL MEG
+                idegallapot += 50;
                 Thread.Sleep(5000); 
+                int eselyKorhaz = rand.Next(1, 101);
+                if (eselyKorhaz > 0)
+                {
+                    Korhaz();
+                    KorhazTulelve();
+                }
             }
             return valasztottIndex;
         }
@@ -162,16 +167,15 @@ namespace Game
         public static int EurosOliver()
         {
             string szoveg = "Jelenlegi helyzet: Az Eurós boltban találkozol szeretett osztálytársaddal Roncz Olivérrel";
-            string[] valasztasok = { "Kínos beszélgetés, pedig mindkettőtök menne" };
+            string[] valasztasok = { "Kínos beszélgetés, pedig mindkettőtök menne" }; // KO PAPIR OLLO GAME
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
-        public static int EurosBolt(int cost)
+        public static int EurosBolt()
         {
             string szoveg = "Jelenlegi helyzet: Eurós Bolt";
             string[] valasztasok = { "Rakéta vásárlása", "Hagymakarika vásárlása", "Nem kell semmi" };
             int valasztottIndex = Menu(szoveg, valasztasok);
-            valasztottIndex = ElfogyPenz(valasztottIndex, cost);
             return valasztottIndex;
         }
         public static int Euros()
@@ -181,5 +185,34 @@ namespace Game
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
+        public static int Jedlik()
+        {
+            string szoveg = "Jelenlegi helyzet: Jedlik";
+            string[] valasztasok = { "Vasútállomás aluljáró" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
+        public static int Korhaz()
+        {
+            int tuleles = rand.Next(0, 101);
+            string szoveg = "Jelenlegi helyzet: Szerencsédre egy járókelő észrevett és habozás nélkül hívta a mentőket, állapotod nagyon súlyos, még semmi nem dőlt el";
+            string[] valasztasok = { "Fekvés a halálos ágyon" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            Console.WriteLine("Nyomj meg egy gombot a továbblépéshez");
+            Console.ReadLine();
+            if (tuleles > 70)
+            {
+                Halal();
+            }
+            return valasztottIndex;
+        }
+        public static int KorhazTulelve()
+        {
+            string szoveg = "Jelenlegi helyzet: Kórházból kiengedtek! Kezdésed helye a legutóbbi helyzeted";
+            string[] valasztasok = { "Kezdés" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
+
     }
 }

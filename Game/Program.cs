@@ -10,9 +10,10 @@
         static bool bogyok = false;
         static bool fomenu = true;
         static int fegyverek = 1;
+        static int tulelve = 1;
+        static Random rand = new Random();
         static void Main(string[] args)
         {
-            Random rand = new Random();
             if (foMenu() == 0)
             {
                 fomenu = false;
@@ -107,25 +108,54 @@
                                 }
                                 tortenesAluljaro = false;
                             }
-                            int vasut = Vasut();
+                            int vasut;
+                            int euros = 1;
+                            int jedlik = 1;
                             do
                             {
-                                switch (vasut)
+                                vasut = Vasut();
+                                do
                                 {
-                                    case 1:
-                                        if (tortenesEuros)
-                                        {
-                                            int taliOliverrel = EurosOliver();
-                                            tortenesEuros = false;
-                                        }
-                                       
-                                        break;
-                                    case 2:
-                                        Console.WriteLine("jo");
-                                        Console.ReadLine();
-                                        break;
-                                }
+                                    switch (vasut)
+                                    {
+                                        case 1:
+                                            if (tortenesEuros)
+                                            {
+                                                int taliOliverrel = EurosOliver();
+                                                tortenesEuros = false;
+                                            }
+                                            int eurosBolt;
+                                            do
+                                            {
+                                                eurosBolt = EurosBolt();
+                                                switch (eurosBolt)
+                                                {
+                                                    case 0:
+                                                        if (ElfogyPenz(0, 350) != 1)
+                                                        {
+                                                            idegallapot -= 20;
+                                                            veralkoholszint += 20;
+                                                            penz -= 350;
+                                                        }
+                                                        break;
+                                                    case 1:
+                                                        if (ElfogyPenz(0, 300) != 1)
+                                                        {
+                                                            penz -= 300;
+                                                            eletkedv += 20;
+                                                        }
+                                                        break;
+                                                }
+                                            } while (eurosBolt != 2);
+                                            euros = Euros();
+                                            break;
+                                        case 2:
+                                            Korhaz();
+                                            jedlik = KorhazTulelve();
+                                            break;
+                                    }
 
+                                } while (euros != 0 && jedlik != 0 && vasut != 0);
                             } while (vasut != 0);
                             break;
                         case 3:
@@ -156,17 +186,12 @@
                                         }
                                         break;
                                 }
-                            } while(XXXBolt != 2);  
+                            } while (XXXBolt != 2);
                             break;
-                                
+
                     }
-                    
+
                 } while (true);
-                    
-                
-                
-
-
             }
         }
         public static int Menu(string szoveg, string[] valasztasok)
@@ -194,10 +219,20 @@
                 }
                 if (fomenu == false)
                 {
-                    statisztikak(eletkedv, 10, "Életkedv");
-                    statisztikak(idegallapot, 12, "Idegállapot");
-                    statisztikak(veralkoholszint, 14, "Véralkoholszint");
-                    Console.WriteLine($"\nPénz: {penz}");
+                    bool korhaz = statisztika();
+                    if (korhaz == false)
+                    {
+                        eletkedv = statisztikaKiIro(eletkedv, 10, "Életkedv");
+                        idegallapot = statisztikaKiIro(idegallapot, 12, "Idegállapot");
+                        veralkoholszint = statisztikaKiIro(veralkoholszint, 14, "Véralkoholszint");
+                        Console.WriteLine($"\nPénz: {penz}");
+                    }
+                    if (tulelve == 0)
+                    {
+                        tulelve = 1;
+                        Console.Clear();
+                        opciokMegjelenitese();
+                    }
                 }
                 
             }
@@ -232,7 +267,26 @@
             }
 
         }
-        public static void statisztikak(int value, int color, string stat)
+        public static bool statisztika()
+        {
+            bool korhaz = false;
+            if (eletkedv == 100)
+            {
+                idegallapot -= 50;
+                eletkedv = 0;
+            }
+            if (idegallapot == 100 || veralkoholszint == 100)
+            {
+                korhaz = true;
+                idegallapot = 20;
+                veralkoholszint = 0;
+                Console.Clear();
+                Korhaz();
+                tulelve = KorhazTulelve();
+            }
+            return korhaz;
+        }
+        public static int statisztikaKiIro(int value, int color, string stat)
         {
             Console.WriteLine($"\n{stat}:\n");
             if (value > 100)
@@ -260,7 +314,9 @@
                 Console.BackgroundColor = ConsoleColor.Black;
             }
             Console.WriteLine();
+            return value;
         }
+
 
         public static int foMenu()
         {

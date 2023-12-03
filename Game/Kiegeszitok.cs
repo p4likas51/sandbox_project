@@ -30,5 +30,37 @@ namespace Game
             }
             return index;
         }
+        public static void Halal()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(@"
+
+  __  __            _           _ _    __  _   _ 
+ |  \/  |          | |         | | |  /_/ | | | |
+ | \  / | ___  __ _| |__   __ _| | |_ __ _| | | |
+ | |\/| |/ _ \/ _` | '_ \ / _` | | __/ _` | | | |
+ | |  | |  __/ (_| | | | | (_| | | || (_| | | |_|
+ |_|  |_|\___|\__, |_| |_|\__,_|_|\__\__,_|_| (_)
+               __/ |                             
+              |___/                              
+");
+            Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(2000);
+            Environment.Exit(0);
+        }
+        public static void Veralkohol()
+        {
+            bool allapot = true;
+            while (allapot)
+            {
+                if (veralkoholszint >= 100)
+                {
+                    Korhaz();
+                    allapot = false;
+                }
+            }
+            allapot = true;
+        }
     }
 }
