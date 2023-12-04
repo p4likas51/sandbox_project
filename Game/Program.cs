@@ -37,38 +37,46 @@
                 }
                 else if (indexFolyoso == 1)
                 {
-                    JedlikWC();
-                }
-
-                int indexWC = JedlikWC();
-                if (indexWC == 0)
-                {
-                    Bufe();
-                }
-
-                int BIndex = BFolyoso();
-                if (BIndex == 0)
-                {
-                    int TesiIndex = TesiOltozo();
-                    if (TesiIndex == 0)
+                    int indexWC = JedlikWC();
+                    if (indexWC == 0)
                     {
-                        JedlikKijarat();
-                    }
-                    else
-                    {
-                        SZGTerem();
+                        Bufe();
                     }
                 }
                 else
                 {
-                    int SZGIndex = SZGTerem();
-                    if (SZGIndex == 0)
+                    int BIndex = BFolyoso();
+                    if (BIndex == 0)
                     {
-                        JedlikKijarat();
+                        int TesiIndex = TesiOltozo();
+                        if (TesiIndex == 0)
+                        {
+                            int TesiTeremIndex = TesiTerem();
+                            if (TesiTeremIndex == 0)
+                            {
+                                JedlikKijarat();
+                            }
+                            else
+                            {
+                                SZGTerem();
+                            }
+                        }
+                        else
+                        {
+                            SZGTerem();
+                        }
                     }
                     else
                     {
-                        TesiOltozo();
+                        int SZGIndex = SZGTerem();
+                        if (SZGIndex == 0)
+                        {
+                            JedlikKijarat();
+                        }
+                        else
+                        {
+                            TesiOltozo();
+                        }
                     }
                 }
             }
