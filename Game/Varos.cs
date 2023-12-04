@@ -195,7 +195,18 @@ namespace Game
         public static int Korhaz()
         {
             int tuleles = rand.Next(0, 101);
-            string szoveg = "Jelenlegi helyzet: Szerencsédre egy járókelő észrevett és habozás nélkül hívta a mentőket, állapotod nagyon súlyos, még semmi nem dőlt el";
+            string szoveg = @"
+
+  _  __ __       _       __      
+ | |/ //_/      | |     /_/      
+ | ' / ___  _ __| |__   __ _ ____
+ |  < / _ \| '__| '_ \ / _` |_  /
+ | . \ (_) | |  | | | | (_| |/ / 
+ |_|\_\___/|_|  |_| |_|\__,_/___|
+                                 
+                                 
+" +
+                "Jelenlegi helyzet: Szerencsédre egy járókelő észrevett és habozás nélkül hívta a mentőket, állapotod nagyon súlyos, még semmi nem dőlt el";
             string[] valasztasok = { "Fekvés a halálos ágyon" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             Console.WriteLine("Nyomj meg egy gombot a továbblépéshez");

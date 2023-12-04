@@ -333,6 +333,7 @@
                                                                           |  $$$$$$/|  $$$$$$/                                | $$      |  $$$$$$/              
                                                                            \______/  \______/                                 |__/       \______/               
             ";
+            //Console.SetCursorPosition((Console.WindowWidth) / 2, 0);
             string[] valasztasok = { "Játékhoz Nyomj Entert!" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
