@@ -78,13 +78,13 @@ namespace Game
         }
 
 
-        //public static int DunaszegEsemeny()
-        //{
-        //    string szoveg = "Jelenlegi helyzet: Miután úgy gondoltad, hogy neked mindenáron Dunaszegre kell menni gyanúsan sétálsz az utcákon.";
-        //    string[] valasztasok = { "Fazakas sufnija", "Győrzámolyi buszmegálló", "Mákvirág kocsma" };
-        //    int valasztottIndex = Menu(szoveg, valasztasok);
-        //    return valasztottIndex;
-        //}
+        public static int DunaszegEsemeny()
+        {
+            string szoveg = "Jelenlegi helyzet: Miután úgy gondoltad, hogy neked mindenáron Dunaszegre kell menni gyanúsan sétálsz a homályos utcákon. Egszer csak arra leszel figyelmes, hogy a sötétségből előjön egy csapat kiéhezett vadliba. Döntés előtt állsz.";
+            string[] valasztasok = { "Ellentámadást indíasz a vadlibák ellen", "Elfutsz mint egy gyáva nyúl" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
         public static int Dunaszeg()
         {
             string szoveg = "Jelenlegi helyzet: Dunaszeg";

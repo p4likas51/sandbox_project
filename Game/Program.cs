@@ -7,7 +7,7 @@
         static int idegallapot = 0;
         static int penz = 2000;
         static void Main(string[] args)
-        {
+        {            
             Random random = new Random();
             if (foMenu() == 0)
             {
@@ -58,9 +58,10 @@
                                         Console.WriteLine("Egyik részeg afgán veterán(Imre bá)nak nem tetszett a pofád és megfenyegetett, hogy gyomron rúg. Bevettette arab háborús taktikáját de nem járt sikerrel így csak mentálisan épített le.  \nTováb a folytatáshoz");
                                         Console.ReadLine();
                                     }
-                                    else if (random.Next(1, 100) < 5)
+                                    else if (random.Next(1, 100) <= 5)
                                     {
                                         Console.WriteLine("Imre bá felismer téged és rég tett fogadalmát beváltja. Erőszakosan rádtámad és te magatehetetlen vagy. Afgán veterán háborús taktikája ellen nem tudod felvenni a versenyt és bár küzdöttél végül alulmaradtál. ");
+                                        break;
                                     }
 
                                 }
@@ -109,7 +110,30 @@
                             }
                             else if (makviragkocsma == 2)
                             {
-                                int dunaszeg = Dunaszeg();
+                                if(random.Next(1, 100) >= 35)
+                                {
+                                    bool dunaszegtortenes = true;
+                                    if (dunaszegtortenes)
+                                    {
+                                        int dunaszegesemeny = DunaszegEsemeny();
+                                        dunaszegtortenes = false;
+                                        if (dunaszegesemeny == 0)
+                                        {                                                                                        
+                                            idegallapot += 15;
+                                            Console.WriteLine("Azt választottad, hogy szembe szállsz a gúnár hadsereggel, azonban fizikai felépítésed miatt a csatában alulmaradtál. Tudván a tények állását kisebb idegbaj tört rád.");
+                                            Console.ReadLine();
+
+                                        }
+                                        else if (dunaszegesemeny == 1)
+                                        {
+                                            eletkedv -= 15;
+                                            Console.WriteLine("Úgy gondoltad, hogy most nem alkalmas csatába szállni ezért felkötötted a nyúlcipődet. Lelkileg ez annyira megviselt, hogy majdnem szívbajt kaptál. Az életkedved is csökkent te gyász.");
+                                            Console.ReadLine();
+                                        }
+                                    }
+                                    int dunaszeg = Dunaszeg();
+                                }
+                                                                                        
                             }
                             else
                             {
