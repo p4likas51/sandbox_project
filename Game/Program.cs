@@ -9,9 +9,13 @@
         static bool megtamadnak = false;
         static bool bogyok = false;
         static bool fomenu = true;
-        static int fegyverek = 1;
+        static int fegyverek = 0;
+        static bool ostor = false;
         static int tulelve = 1;
         static Random rand = new Random();
+        // balint valtozoi
+        static bool multimeter = false;
+        static bool snussz = false;
         static void Main(string[] args)
         {
             if (foMenu() == 0)
@@ -123,6 +127,10 @@
                                             {
                                                 int taliOliverrel = EurosOliver();
                                                 tortenesEuros = false;
+                                                if (taliOliverrel == 0)
+                                                {
+                                                    Jatek();
+                                                }
                                             }
                                             int eurosBolt;
                                             do
@@ -175,6 +183,7 @@
                                         if (ElfogyPenz(0, 1500) != 1)
                                         {
                                             fegyverek++;
+                                            ostor = true;
                                             penz -= 1500;
                                         }
                                         break;
@@ -226,6 +235,7 @@
                         idegallapot = statisztikaKiIro(idegallapot, 12, "Idegállapot");
                         veralkoholszint = statisztikaKiIro(veralkoholszint, 14, "Véralkoholszint");
                         Console.WriteLine($"\nPénz: {penz}");
+                        Console.WriteLine("\nTárgyaid megnézéséhez nyomd meg az: 'I' betűt");
                     }
                     if (tulelve == 0)
                     {
@@ -235,6 +245,7 @@
                     }
                 }
                 
+
             }
             int programFut()
             {
@@ -246,6 +257,11 @@
 
                     ConsoleKeyInfo betuInfo = Console.ReadKey(true);
                     lenyomottBetu = betuInfo.Key;
+                    if (lenyomottBetu == ConsoleKey.I)
+                    {
+                        Inventory();
+                        
+                    }
                     if (lenyomottBetu == ConsoleKey.UpArrow)
                     {
                         valasztottIndex--;
@@ -315,6 +331,18 @@
             }
             Console.WriteLine();
             return value;
+        }
+        
+        public static int Inventory()
+        {
+            string szoveg = "Tárgyaid:";
+            if (bogyok) szoveg += "\n\tBogyók";
+            if (snussz) szoveg += "\n\tSnüssz";
+            if (ostor) szoveg += "\n\tOstor";
+            Console.WriteLine("Használható:");
+            string[] valasztasok = {"Kilépés"};
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
         }
 
 

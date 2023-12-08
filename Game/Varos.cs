@@ -167,7 +167,8 @@ namespace Game
         public static int EurosOliver()
         {
             string szoveg = "Jelenlegi helyzet: Az Eurós boltban találkozol szeretett osztálytársaddal Roncz Olivérrel";
-            string[] valasztasok = { "Kínos beszélgetés, pedig mindkettőtök menne" }; // KO PAPIR OLLO GAME
+            szoveg += "\nKitalálja, hogy kő-papír-ollóval döntsétek el, hogy ki fizessen a boltban";
+            string[] valasztasok = {"Kő-papír-olló", "Inkább kihagyod"};
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
@@ -206,7 +207,7 @@ namespace Game
                                  
                                  
 " +
-                "Jelenlegi helyzet: Szerencsédre egy járókelő észrevett és habozás nélkül hívta a mentőket, állapotod nagyon súlyos, még semmi nem dőlt el";
+                "Jelenlegi helyzet: \n\tValahogy azon kapon magad hogy egy kórházi ágyon fekszel, nem emlékszel semmire, állapotod nagyon súlyos, még semmi nem dőlt el";
             string[] valasztasok = { "Fekvés a halálos ágyon" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             Console.WriteLine("Nyomj meg egy gombot a továbblépéshez");
