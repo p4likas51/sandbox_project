@@ -9,7 +9,7 @@ namespace Game
 {
     internal partial class Program
     {
-        public static int KorokSzama()
+        public static float KorokSzama()
         {
             string szoveg = "Hány körig menjen a játék?";
             string[] valasztasok = { "1", "3", "5" };
@@ -18,7 +18,7 @@ namespace Game
         }
         public static void Jatek()
         {
-            int korok = KorokSzama();
+            float korok = KorokSzama();
             if (korok == 0) korok = 1;
             else if (korok == 1) korok = 3;
             else korok = 5;
@@ -27,43 +27,53 @@ namespace Game
 
             for (int i = 0; i <= korok; i++)
             {
-                int gepTipp = rand.Next(0, 3);
-                int jatekosTipp = Valasztas();
-                Console.Write("Olivér választása: ");
-                if (gepTipp == 0) Console.WriteLine("Kő");
-                else if (gepTipp == 1) Console.WriteLine("Papír");
-                else Console.WriteLine("Olló");
-                Thread.Sleep(2000);
-                if (jatekosTipp == gepTipp)
+                if (gep < (korok / 2) && jatekos < (korok / 2))
                 {
-                    Console.WriteLine("Döntetlen");
-                    Thread.Sleep(2000);
+                    int gepTipp = rand.Next(0, 3);
+                    int jatekosTipp = Valasztas();
+                    Console.Clear();
+                    Console.WriteLine("A továbblépéshez nyomj meg egy gombot");
+                    Console.ReadLine();
+                    Console.WriteLine($"Jelenlegi állás: {jatekos} - {gep} (Te - Olivér)\n");
+                    Console.Write("Olivér választása: ");
+                    if (gepTipp == 0) Console.WriteLine("Kő");
+                    else if (gepTipp == 1) Console.WriteLine("Papír");
+                    else Console.WriteLine("Olló");
+                    if (jatekosTipp == gepTipp)
+                    {
+                        Console.WriteLine("\nDöntetlen");
+                        Thread.Sleep(2000);
+                    }
+                    else if ((jatekosTipp == 0 && gepTipp == 1) ||
+                             (jatekosTipp == 1 && gepTipp == 2) ||
+                             (jatekosTipp == 2 && gepTipp == 0))
+                    {
+                        Console.WriteLine("\nOlivér nyert");
+                        Console.ReadLine();
+                        gep++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nTe nyertél");
+                        Console.ReadLine();
+                        jatekos++;
+                    }
                 }
-                else if ((jatekosTipp == 0 && gepTipp == 1) ||
-                         (jatekosTipp == 1 && gepTipp == 2) ||
-                         (jatekosTipp == 2 && gepTipp == 0))
-                {
-                    Console.WriteLine("Olivér nyert");
-                    Thread.Sleep(2000);
-                    gep++;
-                }
-                else
-                {
-                    Console.WriteLine("Te nyertél");
-                    Thread.Sleep(2000);
-                    jatekos++;
-                }
+                
             }
+            Console.Clear();
+            Console.Write("\nJáték győztese: ");
             if (jatekos > gep)
             {
-                Console.WriteLine("Te nyertél");
-                Console.ReadLine();
+                Console.WriteLine("Te");
             }
             else
             {
-                Console.WriteLine("Olivér nyert");
-                Console.ReadLine();
+                Console.WriteLine("Olivér");
+                Console.WriteLine($"Jelenlegi állás: {jatekos} - {gep} (Te - Olivér)\n");
+                Console.WriteLine("Ez azt jelenti, hogy Olivérnek fizetsz egy hagymáskarikát");
             }
+
         }
         public static int Valasztas()
         {

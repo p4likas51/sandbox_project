@@ -167,7 +167,8 @@ namespace Game
         public static int EurosOliver()
         {
             string szoveg = "Jelenlegi helyzet: Az Eurós boltban találkozol szeretett osztálytársaddal Roncz Olivérrel";
-            szoveg += "\nKitalálja, hogy kő-papír-ollóval döntsétek el, hogy ki fizessen a boltban";
+            szoveg += "\nKitalálja, hogy kő-papír-ollózzatok, ha ő nyer veszel neki egy hagymáskarikát, ha te akkor ő vesz neked egy rakétát";
+            szoveg += "\n(Csak akkor tudsz játszani, ha van elég pénzed egy hagymáskarikára)";
             string[] valasztasok = {"Kő-papír-olló", "Inkább kihagyod"};
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;

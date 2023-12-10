@@ -127,7 +127,7 @@
                                             {
                                                 int taliOliverrel = EurosOliver();
                                                 tortenesEuros = false;
-                                                if (taliOliverrel == 0)
+                                                if (taliOliverrel == 0 && ElfogyPenz(0, 300) != 1)
                                                 {
                                                     Jatek();
                                                 }
