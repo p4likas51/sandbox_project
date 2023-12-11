@@ -7,77 +7,151 @@
         static int idegallapot = 0;
         static int penz = 2000;
         static int multiMeterChance = 50;
+        static bool voltOltozes = false;
+        static bool voltTömő = false;
+        static bool voltAmmonia = false;
+        static bool voltOra = false;
+        static bool ennyitTerveztemMára = false;
+        static bool AnnyiraNemAkarom = false;
+        static bool Vanigazolás = false;
 
         static void Main(string[] args)
         {
             if (foMenu() == 0)
             {
                 int indexBejarat = JedlikBejarat();
-                if (indexBejarat == 0)
+                switch (indexBejarat)
                 {
-                    FazakasTerem();
-                }
-                else if (indexBejarat == 1)
-                {
-                    Vinczeterem();
-                }
-                else
-                {
-                    int padlásOrNot = CTerem();
-                    if (padlásOrNot == 1)
-                    {
-                        cPadlas();
-                    }
-                }
-
-                int indexFolyoso = Folyoso();
-                if (indexFolyoso == 0)
-                {
-                    Bufe();
-                }
-                else if (indexFolyoso == 1)
-                {
-                    int indexWC = JedlikWC();
-                    if (indexWC == 0)
-                    {
-                        Bufe();
-                    }
-                }
-                else
-                {
-                    int BIndex = BFolyoso();
-                    if (BIndex == 0)
-                    {
-                        int TesiIndex = TesiOltozo();
-                        if (TesiIndex == 0)
+                    case 0:
+                        FazakasTerem();
+                        break;
+                    case 1:
+                        Vinczeterem();
+                        break;
+                    case 2:
+                        int nemtudom = CTerem();
+                        if (nemtudom == 1)
                         {
-                            int TesiTeremIndex = TesiTerem();
-                            if (TesiTeremIndex == 0)
+                            cPadlas();
+                        }
+                        break;
+                }
+                int dokument = Folyoso();
+                switch (dokument)
+                {
+                    case 0:
+                        Bufe();
+                        break; 
+                    case 1:
+                        int querySelector = JedlikWC();
+                        if (querySelector == 0)
+                        {
+                            Bufe();
+                        }
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        Nővérke();
+                        break;
+                }
+                if (Vanigazolás ==true)
+                {
+                    JedlikKijarat();
+                }
+                else
+                {
+                    int dokumentPont = BFolyoso();
+                    switch (dokumentPont)
+                    {
+                        case 0:
+                            int námbör_sziksz = TesiOltozo();
+                            if (námbör_sziksz == 0)
+                            {
+                                int guh = TesiTerem();
+                                if (guh == 0)
+                                {
+                                    JedlikKijarat();
+                                }
+                                else
+                                {
+                                    int nem2 = SZGTerem();
+                                    if (nem2 == 0)
+                                    {
+                                        JedlikKijarat();
+                                    }
+                                    else
+                                    {
+                                        TesiOltozo();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                int nem1 = SZGTerem();
+                                if (nem1 == 0)
+                                {
+                                    JedlikKijarat();
+                                }
+                                else
+                                {
+                                    int námbör_sziksz1 = TesiOltozo();
+                                    if (námbör_sziksz1 == 0)
+                                    {
+                                        int guh1 = TesiTerem();
+                                        if (guh1 == 0)
+                                        {
+                                            JedlikKijarat();
+                                        }
+                                        else
+                                        {
+                                            int nem2 = SZGTerem();
+                                            if (nem2 == 0)
+                                            {
+                                                JedlikKijarat();
+                                            }
+                                            else
+                                            {
+                                                TesiOltozo();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        case 1:
+                            int nem = SZGTerem();
+                            if (nem == 0)
                             {
                                 JedlikKijarat();
                             }
                             else
                             {
-                                SZGTerem();
+                                int námbör_sziksz3 = TesiOltozo();
+                                if (námbör_sziksz3 == 0)
+                                {
+                                    int guh3 = TesiTerem();
+                                    if (guh3 == 0)
+                                    {
+                                        JedlikKijarat();
+                                    }
+                                    else
+                                    {
+                                        int nem3 = SZGTerem();
+                                        if (nem3 == 0)
+                                        {
+                                            JedlikKijarat();
+                                        }
+                                        else
+                                        {
+                                            TesiOltozo();
+                                        }
+                                    }
+                                }
                             }
-                        }
-                        else
-                        {
-                            SZGTerem();
-                        }
+                            break;
                     }
-                    else
-                    {
-                        int SZGIndex = SZGTerem();
-                        if (SZGIndex == 0)
-                        {
-                            JedlikKijarat();
-                        }
-                        else
-                        {
-                            TesiOltozo();
-                        }
-                    }
+                    //Vasútállomás függvény
                 }
             }
         }

@@ -144,8 +144,6 @@ namespace Game
         public static int CTerem()
         {
             Console.Clear();
-            bool voltAmmonia = false;
-            bool voltOra = false;
             string szoveg = ("\nJelenlegi helyzet: A Híres C# terem minden pompájában");
             Console.WriteLine(szoveg);
             Random randomEvent = new Random();
@@ -177,7 +175,6 @@ namespace Game
         static void cPadlas() 
         {
             Console.Clear();
-            bool voltTömő = false;
             string szoveg = ("\nJelenlegi helyzet: Az átkozott padlás öltöző a 41-es terem fölött.");
             Console.WriteLine(szoveg);
             if (voltTömő == false)
@@ -218,14 +215,14 @@ namespace Game
                 eletkedv -= 5;
                 idegallapot += 5;
             }
-            string[] valasztasok = { "Büfé", "Jedlik wéce", "B épület átjáró" };
+            string[] valasztasok = { "Büfé", "Jedlik wéce", "B épület átjáró", "Nővérke" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
 
         public static void Bufe()
         {
-            Console.WriteLine("Work in progress, choose else");
+            Console.WriteLine("Nem akarom megcsinálni");
             //cseszett hosszú párbeszéd meg kurva sok if
             Folyoso();
         }
@@ -246,7 +243,7 @@ namespace Game
                 Value = value;
             } while (Value != 1 && Value != 2);
 
-            if (Value == 1) //inventoryba van cigi
+            if (Value == 1) //meg ha inventoryba van cigi
             {
                 Console.WriteLine("Tiszta élvezettel telefújtad az egész budoir helységét rákkeltő füsttel és kielégítve érzed magad.");
                 Console.ReadLine();
@@ -293,6 +290,60 @@ namespace Game
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
+
+        public static int Nővérke()
+        {
+            string choice;
+            int Value;
+            Console.Clear();
+            string szoveg = ("\nJelenlegi helyzet: Az iskolai orvosi igazolás adására felhatalmazott személy tanyája" +
+                "\nMegpróbálhatsz kijutni ebből a fosból az igazolásával de akkor sok contentből kimaradsz.");
+            Console.WriteLine(szoveg);
+            do
+            {
+                Console.WriteLine("Mi a következő cselekedeted? " +
+                    "\n1.Bemész igazolásért " +
+                    "\n2.Inkább végigszenveded a napot hátha találsz még valamit");
+                choice = Console.ReadLine();
+                int.TryParse(choice, out int value);
+                Value = value;
+            } while (Value != 1 && Value != 2);
+            if (Value == 1 && AnnyiraNemAkarom == false)
+            {
+                Console.WriteLine("");
+                Console.ReadLine();
+                eletkedv += 5;
+                Random randomEvent = new Random();
+                int randomNumber = randomEvent.Next(0, 101);
+                if (randomNumber <= 70)
+                {
+                    Console.WriteLine("A nővérke már akkor mosolyog mikor meglátja hogy már megint te vagy és pontosan tudja mi a célod." +
+                        "\nTeljes átéléssel eljátszod a hattyúk halálát ami meghatja és hazaküld");
+                    Vanigazolás = true;
+                    Console.ReadLine();
+                    return 0;
+                }
+                else
+                {
+                    Console.WriteLine("Hiába esedezel elötte térdre rogyva, ő úgy döntött hogy ma bizony meg kell bírkoznod az akadájokkal ebben a szutykos épületben");
+                    string[] valasztasok = { "Folyosó" };
+                    int valasztottIndex = Menu(szoveg, valasztasok);
+                    return valasztottIndex;
+                }
+            }
+            else if (AnnyiraNemAkarom == false)
+            {
+                Console.WriteLine("Hosszú gondolkozás után a jobbik feled nyeri a fejedben a vitát és úgy döntesz hogy már azért már a ló nemiszervének is van vége és isten legerősebb katonájaként megpróbálod átvészelni a napot");
+                string[] valasztasok = { "Folyosó" };
+                int valasztottIndex = Menu(szoveg, valasztasok);
+                return valasztottIndex;
+            }
+            else
+            {
+                Console.WriteLine("Már ahogyan kezded másodjára megközelíteni a védőnő irodáját, távolról elkerget a világ másik végére pofátlanságod miatt");
+                return 0;
+            }
+        }
         public static int TesiOltozo() 
         {
             Console.Clear();
@@ -300,13 +351,15 @@ namespace Game
             Console.WriteLine(szoveg);
             Random randomEvent = new Random();
             int randomNumber = randomEvent.Next(0, 101);
-            bool voltOltozes = false;
             if(randomNumber <=50 && voltOltozes == false)
             {
                 Console.WriteLine("Benjámin megdícséri hogy igazán jól esik neki a gyatádon keresztül látszódó férfiasságod. Ez örömmel tölt el");
                 Console.ReadLine();
                 voltOltozes = true;
                 eletkedv += 5;
+                string[] valasztasok = { "Tesi terem", "Szűcs Gábor terem" };
+                int valasztottIndex = Menu(szoveg, valasztasok);
+                return valasztottIndex;
             }
             else if(randomNumber >=50 && voltOltozes == false)
             {
@@ -315,6 +368,9 @@ namespace Game
                 Console.ReadLine();
                 voltOltozes = true;
                 eletkedv -= 5;
+                string[] valasztasok = { "Tesi terem", "Szűcs Gábor terem" };
+                int valasztottIndex = Menu(szoveg, valasztasok);
+                return valasztottIndex;
             }
             else
             {
@@ -322,10 +378,9 @@ namespace Game
                     "\n'Mi a faszért akarsz megint bemenni oda hát megőrültél?'" +
                     "\nElsötétedik a világ és hirtelen kint vagy a Jedlikből");
                 Console.ReadLine();
+                return JedlikKijarat();
             }
-            string[] valasztasok = { "Tesi terem", "Szűcs Gábor terem" };
-            int valasztottIndex = Menu(szoveg, valasztasok);
-            return valasztottIndex;
+
         }
         public static int TesiTerem()
         {
@@ -383,7 +438,8 @@ namespace Game
             int randomNumber = randomEvent.Next(0, 101);
             if (randomNumber <= 15) 
             {
-                Console.WriteLine("A tanárúr bejött a terembe de mivel ennyit tervezett mára ezzel a lendülettel ki is ment.");
+                Console.WriteLine("A tanárúr bejött a terembe de mivel ennyit tervezett mára ezzel a lendülettel ki is ment. Így könnyedén le tudod nyúlni az értékes elektronikai eszközt a teremből");
+                //inventoryba multiméter
                 Console.ReadLine();
             }
             else
@@ -400,13 +456,14 @@ namespace Game
                     int.TryParse(choice, out int value);
                     Value = value;
                 } while (Value != 1 && Value != 2);
-                if (multiMeterChance == 100 && Value == 1)
+                if (multiMeterChance == 100 && Value == 1 && ennyitTerveztemMára == false)
                 {
                     Console.WriteLine("Könnyedén elrakod a multimétert és teljes nyugodtsággodat megőrzöd annak tudatában hogy nincs bizonyíték.");
                     Console.ReadLine();
                     //inventoryba multiméter
+                    ennyitTerveztemMára = true;
                 }
-                else if (multiMeterChance != 100 && Value == 1)
+                else if (multiMeterChance != 100 && Value == 1 && ennyitTerveztemMára == false)
                 {
                     Console.WriteLine("Hirtelen zsebrerakod a multimétert viszont fentáll a veszélye hogy a portás látta a kamerán. Szíved elkezd sietve verni");
                     Console.ReadLine();
@@ -420,18 +477,25 @@ namespace Game
                         Console.ReadLine();
                         idegallapot += 30;
                         //inventory-ból fegyver meg cigi meg tömő meg stb elveszik
+                        ennyitTerveztemMára = true;
                     }
                     else
                     {
                         Console.WriteLine("Szerencsére a portás éppen aludt a kamerákat meg nem volt kedve visszanézni. A multiméter a tiéd.");
                         Console.ReadLine();
                         //inventoryba multiméter
+                        ennyitTerveztemMára = true;
                     }
                 }
-                else
+                else if (ennyitTerveztemMára == false)
                 {
                     Console.WriteLine("Már golyózik a szemed az igazság táblák miatt mikor hirtelen meghallod csengét és világi megkönnyebülésben részesedsz.");
                     Console.ReadLine();
+                    ennyitTerveztemMára = true;
+                }
+                else
+                {
+                    Console.WriteLine("Józan ember nem jönne be másodjára ebbe a terembe még kinzás fenyegetésével sem. Hirtelen észreveszed magadat és gyorsan kisietsz a teremből");
                 }
             }
             string[] valasztasok = { "Hazamész a picsába", "Tesi öltöző" };
@@ -457,14 +521,18 @@ namespace Game
                 }
                 else
                 {
-                    Console.WriteLine("Gyorsan megvolt a hepe-hupa pikk-pakk szétkalapáltak és már eleged van");
+                    Console.WriteLine("Gyorsan megvolt a hepe-hupa pikk-pakk miszlikre téptek és már eleged van");
                     Console.ReadLine();
                     penz -= 5000;
                     eletkedv -= 15;
                     idegallapot += 30;
                 }
             }
-            string[] valasztasok = { "Hazamész a picsába", "Tesi öltöző" };
+            else
+            {
+
+            }
+            string[] valasztasok = { "Vasútállomás aluljáró" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
