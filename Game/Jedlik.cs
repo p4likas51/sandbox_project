@@ -530,7 +530,8 @@ namespace Game
             }
             else
             {
-
+                //Vasútállomás függvény
+                return 0;
             }
             string[] valasztasok = { "Vasútállomás aluljáró" };
             int valasztottIndex = Menu(szoveg, valasztasok);
