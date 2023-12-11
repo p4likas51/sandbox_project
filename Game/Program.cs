@@ -6,6 +6,7 @@
         static int veralkoholszint = 0;
         static int idegallapot = 0;
         static int penz = 2000;
+        static bool vegyestuzelesukazanhofokmeropalca = false;
         static void Main(string[] args)
         {            
             Random random = new Random();
@@ -77,14 +78,17 @@
                                     viragagyastortenes = false;
                                     if (viragagyasesemeny == 0)
                                     {
-                                        if (veralkoholszint < 50)
+                                        if (veralkoholszint > 50)
                                         {
-                                            veralkoholszint += 0;
+                                            Console.WriteLine("A nagy ivászat után aludtál egy jót így a májad kicsit megnyugodott");
+                                            Console.ReadLine();
+                                            veralkoholszint = 0;
                                         }
                                         else
                                         {
-                                        veralkoholszint -= 50;
-                                            
+                                            Console.WriteLine("Picikét aludtál");
+                                            Console.ReadLine();
+                                            veralkoholszint -=25;
                                         }
                                     }
                                 }
@@ -99,18 +103,21 @@
                                     wctortenes = false;
                                     if (wcesemeny == 0)
                                     {
+                                        Console.WriteLine("A sötétben egy rabdom emberrel kardoztál és elég jó volt. Így kicsit vidámabban fogod elhagyni a budit.");
                                         eletkedv += 5;
                                     }
                                     else if (wcesemeny == 1)
                                     {
-                                        veralkoholszint = 0;
+                                        Console.WriteLine("Nem bírtad tovább és hánytál egyett. Ezért megkönnyebültebben távolzol a helységből");
+                                        Console.ReadLine();
+                                        veralkoholszint -= 15;
                                     }
                                 }
                                     int wc = WC();
                             }
                             else if (makviragkocsma == 2)
                             {
-                                if(random.Next(1, 100) >= 35)
+                                if(random.Next(1, 101) >= 35)
                                 {
                                     bool dunaszegtortenes = true;
                                     if (dunaszegtortenes)
@@ -120,6 +127,15 @@
                                         if (dunaszegesemeny == 0)
                                         {                                                                                        
                                             idegallapot += 15;
+                                            
+                                            Console.WriteLine("Harcban vagy");
+                                            string text = ".......";
+                                            int delay = 300;
+                                            foreach (char c in text)
+                                            {
+                                                Console.Write(c);
+                                                Thread.Sleep(delay);
+                                            }
                                             Console.WriteLine("Azt választottad, hogy szembe szállsz a gúnár hadsereggel, azonban fizikai felépítésed miatt a csatában alulmaradtál. Tudván a tények állását kisebb idegbaj tört rád.");
                                             Console.ReadLine();
 
@@ -132,6 +148,48 @@
                                         }
                                     }
                                     int dunaszeg = Dunaszeg();
+                                    if (dunaszeg == 0)
+                                    {
+                                        bool sufnitortenes = true;
+                                        if (sufnitortenes)
+                                        {
+                                            int sufniesemeny = FazakassufniEsemeny();
+                                            sufnitortenes = false;
+                                            if (sufniesemeny == 0)
+                                            {
+                                                Console.WriteLine("Gyors reagálásúként felvetted az első dolgot a földről, ami a kezedbe került (kazánhőfokmérő). És voltál olyan ügyes, hogy még kiléted lebukása előtt el tudtad hagyni a helyszínt. Fazakas Tanár Úrt nem zavarta ez a különös eset.");
+                                                vegyestuzelesukazanhofokmeropalca = true;
+                                            }
+                                            else if (sufniesemeny == 1)
+                                            {
+                                                Console.WriteLine("Esztelen menekülés");
+                                                string text = ".......";
+                                                int delay = 600;
+                                                foreach (char c in text)
+                                                {
+                                                    Console.Write(c);
+                                                    Thread.Sleep(delay);
+                                                }
+                                                Console.WriteLine("200-as vérnyomással kirontottál a fészerből és a kukoricafölden keresztül menekülve valahogy kijutottál a szorult helyzetből. Ezért visszatérsz Dunaszeg szívébe.");
+                                                Console.ReadLine();
+                                                idegallapot += 15;
+                                            }
+                                            else if (sufniesemeny == 2)
+                                            {
+                                                Console.WriteLine("Pontos okát nem tudni de a bizonytalan döntéshozás közben tragikus gyorsasággal hagytad itt a bolygót. Szemtanúk szerint nagy fények voltak, a hatóságok azóta sem találtak meg");
+                                                Console.ReadLine();
+                                                Environment.Exit(0);
+                                            }
+                                        }
+
+                                        int fazakassufni = Fazakassufni();
+                                    }
+                                    else if (dunaszeg == 1)
+                                    {
+                                        Console.WriteLine("Szerencsére gond nélkül eljutottál a zámyolyi buszmegállóba.");
+                                        Console.ReadLine();
+                                        int gyorzamolybuszmeg = Gyorzamolyibuszmeg();
+                                    }
                                 }
                                                                                         
                             }
@@ -141,6 +199,26 @@
                             }
                         } while (kocsma);
                         
+                    }
+                    else if(balinthaz == 1)
+                    {
+                        Console.WriteLine("Random nyuggerek mint MINDIG a megállóban kiengedték világfájdalmukat és el kezdtek beszólogatni. Nem bírtad magadat tűrtöztenip és egy kisebb migrént kaptál.");
+                        Console.ReadLine();
+                        idegallapot = 30;
+
+           
+
+                        bool buszmegtortenes = true;
+                        if (buszmegtortenes)
+                        {
+                            int buszmegesemeny = GyorzamolyibuszmegEsemeny();
+                            buszmegtortenes = false;
+                            if (buszmegesemeny == 0)
+                            {
+
+                            }
+                        }
+                                int gyorzamolybuszmeg = Gyorzamolyibuszmeg();                     
                     }
                     
                 } while (true);

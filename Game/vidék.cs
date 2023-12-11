@@ -11,7 +11,7 @@ namespace Game
         Random rand = new Random();
        public static int BalinthazEsemeny()
         {
-            string szoveg = "Jelenlegi helyzet: Bálint alszik a szobájában teljesen illuminált állapotban összeokádva.Szeretnél-e továbbaludni? (Talán jobban lesz)";
+            string szoveg = "Jelenlegi helyzet: Bálint alszik a szobájában teljesen illuminált állapotban. Szeretnél-e továbbaludni? (Talán jobban lesz)";
             string[] valasztasok = {"Igen", "Nem"};
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
@@ -93,10 +93,27 @@ namespace Game
             return valasztottIndex;
         }
 
+
+        public static int FazakassufniEsemeny()
+        {
+            string szoveg = "Jelenlegi helyzet: Miután összegyűjtötted a bátorságod betörtél horror módon Fazakas sufnijába. Azonban nem várt esemény történt mivel a Tanár Úr épp tilogonometila egyenleteket oldott és szembe találtad magad vele. \nHárom választásod van. Vigyázz, akár veszélyes kimenetelű is lehet!";
+            string[] valasztasok = { "Földön heverő valamilyen tárgy ellopása", "Menekülés amerre látsz", "Bzonytalan döntés meghozása" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
         public static int Fazakassufni()
         {
             string szoveg = "Jelenlegi helyzet: Fazakas sufnija";
             string[] valasztasok = {"Dunaszeg"};
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
+
+
+        public static int GyorzamolyibuszmegEsemeny()
+        {
+            string szoveg = "Jelenlegi helyzet: Győrzámolyon, hogy nem jön a busz elég gyakori esemeny, ezért mindig a közelben lerakod a drótszamarat ilyen és más típusú veszélyhezetek miatt. Nincs más választásod át kell kelni a töltésen.";
+            string[] valasztasok = { "Vidéki" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
