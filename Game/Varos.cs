@@ -173,6 +173,13 @@ namespace Game
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
+        public static int OliverAjandeka()
+        {
+            string szoveg = "Mit vegyen neked Olivér";
+            string[] valasztasok = { "Rakéta", "Hagymakarika" };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
         public static int EurosBolt()
         {
             string szoveg = "Jelenlegi helyzet: Eurós Bolt";
@@ -196,6 +203,9 @@ namespace Game
         }
         public static int Korhaz()
         {
+            veralkoholszint = 0;
+            idegallapot = 50;
+            eletkedv = 0;
             int tuleles = rand.Next(0, 101);
             string szoveg = @"
 
@@ -211,7 +221,6 @@ namespace Game
                 "Jelenlegi helyzet: \n\tValahogy azon kapon magad hogy egy kórházi ágyon fekszel, nem emlékszel semmire, állapotod nagyon súlyos, még semmi nem dőlt el";
             string[] valasztasok = { "Fekvés a halálos ágyon" };
             int valasztottIndex = Menu(szoveg, valasztasok);
-            Console.WriteLine("Nyomj meg egy gombot a továbblépéshez");
             Console.ReadLine();
             if (tuleles > 70)
             {

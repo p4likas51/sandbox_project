@@ -1,4 +1,6 @@
-﻿namespace Game
+﻿using System.ComponentModel.Design;
+
+namespace Game
 {
     internal partial class Program
     {
@@ -129,7 +131,24 @@
                                                 tortenesEuros = false;
                                                 if (taliOliverrel == 0 && ElfogyPenz(0, 300) != 1)
                                                 {
-                                                    Jatek();
+                                                    int jatek = Jatek();
+                                                    if (jatek == 0)
+                                                    {
+                                                        int ajandek = OliverAjandeka();
+                                                        if (ajandek == 0)
+                                                        {
+                                                            idegallapot -= 20;
+                                                            veralkoholszint += 20;
+                                                        }
+                                                        else
+                                                        {
+                                                            eletkedv += 20;
+                                                        }
+                                                    }
+                                                    else if (jatek == 1)
+                                                    {
+                                                        penz -= 300;
+                                                    }
                                                 }
                                             }
                                             int eurosBolt;
@@ -294,8 +313,6 @@
             if (idegallapot == 100 || veralkoholszint == 100)
             {
                 korhaz = true;
-                idegallapot = 20;
-                veralkoholszint = 0;
                 Console.Clear();
                 Korhaz();
                 tulelve = KorhazTulelve();
