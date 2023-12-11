@@ -112,14 +112,28 @@ namespace Game
                                 {
                                     penz += 500;
                                 }
+                                VasutWC();
+                                int pont = WcJatek();
+                                if (pont >= 500)
+                                {
+                                    eletkedv += 40;
+                                    idegallapot -= 20;
+                                }
+                                else
+                                {
+                                    eletkedv -= 20;
+                                    idegallapot += 20;
+                                }
                                 tortenesAluljaro = false;
                             }
                             int vasut;
                             int euros = 1;
                             int jedlik = 1;
+
                             do
                             {
                                 vasut = Vasut();
+                                
                                 do
                                 {
                                     switch (vasut)
@@ -179,6 +193,7 @@ namespace Game
                                         case 2:
                                             Korhaz();
                                             jedlik = KorhazTulelve();
+
                                             break;
                                     }
 
@@ -378,7 +393,7 @@ namespace Game
                                                                           |  $$$$$$/|  $$$$$$/                                | $$      |  $$$$$$/              
                                                                            \______/  \______/                                 |__/       \______/               
             ";
-            //Console.SetCursorPosition((Console.WindowWidth) / 2, 0);
+
             string[] valasztasok = { "Játékhoz Nyomj Entert!" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;

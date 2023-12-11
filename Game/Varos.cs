@@ -151,10 +151,9 @@ namespace Game
         }
         public static int VasutWC()
         {
-            string szoveg = "Jelenlegi helyzet: Aluljáró WC";
-            string[] valasztasok = { "Nagy dolog", "Pisilés" };
+            string szoveg = "Kalandod közben nagyon rádjött a vécézhetnék, biztos elrontottad a pocakod";
+            string[] valasztasok = { "Aluljáró WC használata" };
             int valasztottIndex = Menu(szoveg, valasztasok);
-            // JATEK
             return valasztottIndex;
         }
         public static int Vasut()
@@ -221,7 +220,7 @@ namespace Game
                 "Jelenlegi helyzet: \n\tValahogy azon kapon magad hogy egy kórházi ágyon fekszel, nem emlékszel semmire, állapotod nagyon súlyos, még semmi nem dőlt el";
             string[] valasztasok = { "Fekvés a halálos ágyon" };
             int valasztottIndex = Menu(szoveg, valasztasok);
-            Console.ReadLine();
+            Thread.Sleep(2000);
             if (tuleles > 70)
             {
                 Halal();
