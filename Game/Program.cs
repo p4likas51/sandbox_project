@@ -8,36 +8,38 @@
         static int penz = 2000;
         static bool vegyestuzelesukazanhofokmeropalca = false;
         static void Main(string[] args)
-        {            
+        {
             Random random = new Random();
             if (foMenu() == 0)
             {
                 bool balinthaztortenes = true;
                 if (balinthaztortenes)
                 {
-                int balinthazesemeny = BalinthazEsemeny();
+                    int balinthazesemeny = BalinthazEsemeny();
                     balinthaztortenes = false;
                     if (balinthazesemeny == 0)
                     {
                         eletkedv += 5;
                         Console.WriteLine("Jót aludtál és nagyjából működik");
-                    }                    
+                    }
                 }
+                bool dunaszegtortenes = true;
                 do
                 {
 
                     int balinthaz = Balinthaz();
                     if (balinthaz == 0)
-                    {                        
+                    {
                         bool kocsma;
+                        bool kocsmatortenes = true;
                         do
-                        {                            
+                        {
                             kocsma = true;
-                            bool kocsmatortenes = true;
                             if (kocsmatortenes)
                             {
                                 int kocsmaesemeny = MakviragkocsmaEsemeny();
-                                kocsmatortenes = false;
+
+
                                 while (kocsmaesemeny == 0)
                                 {
                                     veralkoholszint += 10;
@@ -45,6 +47,7 @@
                                     penz -= 50;
                                     kocsmaesemeny = MakviragkocsmaEsemeny();
                                 }
+
                                 if (kocsmaesemeny == 2)
                                 {
                                     if (random.Next(1, 3) == 1)
@@ -67,6 +70,7 @@
 
                                 }
                             }
+                            kocsmatortenes = false;
                             int makviragkocsma = Makviragkocsma();
                             if (makviragkocsma == 0)
                             {
@@ -88,7 +92,7 @@
                                         {
                                             Console.WriteLine("Picikét aludtál");
                                             Console.ReadLine();
-                                            veralkoholszint -=25;
+                                            veralkoholszint -= 25;
                                         }
                                     }
                                 }
@@ -113,21 +117,21 @@
                                         veralkoholszint -= 15;
                                     }
                                 }
-                                    int wc = WC();
+                                int wc = WC();
                             }
                             else if (makviragkocsma == 2)
                             {
-                                if(random.Next(1, 101) >= 35)
+                                kocsmatortenes = true;
+                                if (random.Next(1, 101) >= 35)
                                 {
-                                    bool dunaszegtortenes = true;
                                     if (dunaszegtortenes)
                                     {
                                         int dunaszegesemeny = DunaszegEsemeny();
                                         dunaszegtortenes = false;
                                         if (dunaszegesemeny == 0)
-                                        {                                                                                        
+                                        {
                                             idegallapot += 15;
-                                            
+
                                             Console.WriteLine("Harcban vagy");
                                             string text = ".......";
                                             int delay = 300;
@@ -147,6 +151,7 @@
                                             Console.ReadLine();
                                         }
                                     }
+                                    kocsmatortenes = true;
                                     int dunaszeg = Dunaszeg();
                                     if (dunaszeg == 0)
                                     {
@@ -191,44 +196,54 @@
                                         int gyorzamolybuszmeg = Gyorzamolyibuszmeg();
                                     }
                                 }
-                                                                                        
+
                             }
                             else
                             {
                                 kocsma = false;
                             }
                         } while (kocsma);
-                        
+
                     }
-                    else if(balinthaz == 1)
+                    else if (balinthaz == 1)
                     {
                         Console.WriteLine("Random nyuggerek mint MINDIG a megállóban kiengedték világfájdalmukat és el kezdtek beszólogatni. Nem bírtad magadat tűrtöztenip és egy kisebb migrént kaptál.");
                         Console.ReadLine();
                         idegallapot = 30;
 
-           
-
-                        bool buszmegtortenes = true;
-                        if (buszmegtortenes)
+                        int gyorzamolybuszmeg = Gyorzamolyibuszmeg();
+                        if (gyorzamolybuszmeg == 0)
                         {
-                            int buszmegesemeny = GyorzamolyibuszmegEsemeny();
-                            buszmegtortenes = false;
-                            if (buszmegesemeny == 0)
+                            if (random.Next(1, 3) == 2)
                             {
+                                int buszmegesemeny = GyorzamolyibuszmegEsemeny();
+                                if (buszmegesemeny == 0)
+                                {
+                                    if (random.Next(1, 3) == 1)
+                                    {
+                                        eletkedv += 10;
+                                        Console.WriteLine("Szép utad volt");
+                                    }
+                                    else
+                                    {
+                                        idegallapot += 10;
+                                        Console.WriteLine("Elestél");
+                                    }
 
+                                }
                             }
+                            // videki
                         }
-                                int gyorzamolybuszmeg = Gyorzamolyibuszmeg();                     
                     }
-                    
+
                 } while (true);
-                
+
 
             }
         }
         public static int Menu(string szoveg, string[] valasztasok)
         {
-            int valasztottIndex = 0;       
+            int valasztottIndex = 0;
             return programFut();
             void opciokMegjelenitese()
             {
