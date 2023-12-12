@@ -31,6 +31,7 @@ namespace Game
                     if (videki_esemeny == 0)
                     {
                         penz -= 200;
+                        idegallapot += 20;
                     }
                     else
                     {
@@ -86,7 +87,7 @@ namespace Game
                                     case 0:
                                         if (ElfogyPenz(0, 500) != 1)
                                         {
-                                            idegallapot -= 20;
+                                            idegallapot -= 10;
                                             eletkedv += 20;
                                             veralkoholszint += 20;
                                             penz -= 500;
@@ -95,7 +96,7 @@ namespace Game
                                     case 1:
                                         if (ElfogyPenz(0, 1000) != 1)
                                         {
-                                            idegallapot -= 30;
+                                            idegallapot -= 10;
                                             penz -= 1000;
                                             eletkedv += 30;
                                         }
