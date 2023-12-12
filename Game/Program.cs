@@ -65,7 +65,7 @@
                                     else if (random.Next(1, 100) <= 5)
                                     {
                                         Console.WriteLine("Imre bá felismer téged és rég tett fogadalmát beváltja. Erőszakosan rádtámad és te magatehetetlen vagy. Afgán veterán háborús taktikája ellen nem tudod felvenni a versenyt és bár küzdöttél végül alulmaradtál. ");
-                                        break;
+                                        Environment.Exit(0);
                                     }
 
                                 }
@@ -92,7 +92,7 @@
                                         {
                                             Console.WriteLine("Picikét aludtál");
                                             Console.ReadLine();
-                                            veralkoholszint -= 25;
+                                            veralkoholszint -= 10;
                                         }
                                     }
                                 }
@@ -152,6 +152,7 @@
                                         }
                                     }
                                     kocsmatortenes = true;
+
                                     int dunaszeg = Dunaszeg();
                                     if (dunaszeg == 0)
                                     {
