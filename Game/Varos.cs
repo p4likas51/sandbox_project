@@ -8,7 +8,7 @@ namespace Game
 {
     internal partial class Program
     {
-        
+
         public static int VidekiEsemeny(int cost)
         {
             string szoveg = "Jelenlegi helyzet: Videkinél kéreget egy napsütötte ember. Adsz neki pénzt?";
@@ -21,7 +21,7 @@ namespace Game
         {
 
             string szoveg = "Jelenlegi helyzet: Videki";
-            string[] valasztasok = { "Kondi", "Dohi", "Vasútállomás aluljáró" };
+            string[] valasztasok = { "Kondi", "Dohi", "Vasútállomás aluljáró", "Bálint háza" };
             if (veralkoholszint >= 60)
             {
                 List<string> list = new();
@@ -43,7 +43,7 @@ namespace Game
         public static int Kondi()
         {
             string szoveg = "Jelenlegi helyzet: Kondi";
-            string[] valasztasok = { "Vidéki"};
+            string[] valasztasok = { "Vidéki" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
@@ -118,8 +118,8 @@ namespace Game
                 Console.ForegroundColor = ConsoleColor.White;
                 eletkedv = 0;
                 idegallapot += 50;
-                Thread.Sleep(5000); 
-                int eselyKorhaz = rand.Next(1, 101);
+                Thread.Sleep(5000);
+                int eselyKorhaz = random.Next(1, 101);
                 if (eselyKorhaz > 0)
                 {
                     Korhaz();
@@ -168,7 +168,7 @@ namespace Game
             string szoveg = "Jelenlegi helyzet: Az Eurós boltban találkozol szeretett osztálytársaddal Roncz Olivérrel";
             szoveg += "\nKitalálja, hogy kő-papír-ollózzatok, ha ő nyer veszel neki egy hagymáskarikát, ha te akkor ő vesz neked egy rakétát";
             szoveg += "\n(Csak akkor tudsz játszani, ha van elég pénzed egy hagymáskarikára)";
-            string[] valasztasok = {"Kő-papír-olló", "Inkább kihagyod"};
+            string[] valasztasok = { "Kő-papír-olló", "Inkább kihagyod" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
@@ -205,7 +205,7 @@ namespace Game
             veralkoholszint = 0;
             idegallapot = 50;
             eletkedv = 0;
-            int tuleles = rand.Next(0, 101);
+            int tuleles = random.Next(0, 101);
             string szoveg = @"
 
   _  __ __       _       __      
@@ -237,3 +237,4 @@ namespace Game
 
     }
 }
+

@@ -29,7 +29,7 @@ namespace Game
             {
                 if (gep < (korok / 2) && jatekos < (korok / 2))
                 {
-                    int gepTipp = rand.Next(0, 3);
+                    int gepTipp = random.Next(0, 3);
                     int jatekosTipp = Valasztas();
                     Console.Clear();
                     Console.WriteLine("A továbblépéshez nyomj meg egy gombot");
