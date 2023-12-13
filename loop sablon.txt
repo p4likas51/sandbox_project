@@ -1,0 +1,16 @@
+bool gym;
+do
+{
+    gym = true;
+    int kondi = Kondi();
+    switch (kondi)
+    {
+        case 0:
+            gym = false;
+            break;
+        case 1:
+            int valami = Valami();
+            break;
+    }
+
+} while (gym);
