@@ -40,13 +40,29 @@
                 switch (dokument)
                 {
                     case 0:
-                        Bufe();
+                        int bufeigenvagynemmegőrülöknemigaz = Bufe();
+                        if (bufeigenvagynemmegőrülöknemigaz == 1)
+                        {
+                            //Vasútállomás függvény
+                        }
+                        else
+                        {
+                            Folyoso();
+                        }
                         break; 
                     case 1:
                         int querySelector = JedlikWC();
                         if (querySelector == 0)
                         {
-                            Bufe();
+                            int bufeigenvagynemmegőrülöknemigaz1 = Bufe();
+                            if (bufeigenvagynemmegőrülöknemigaz1 == 1)
+                            {
+                                //Vasútállomás függvény
+                            }
+                            else
+                            {
+                                Folyoso();
+                            }
                         }
                         break;
                     case 2:

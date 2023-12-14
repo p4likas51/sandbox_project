@@ -220,11 +220,41 @@ namespace Game
             return valasztottIndex;
         }
 
-        public static void Bufe()
+        public static int Bufe()
         {
-            Console.WriteLine("Nem akarom megcsinálni");
-            //cseszett hosszú párbeszéd meg kurva sok if
-            Folyoso();
+            bool voltálmáritt = false;
+            Console.Clear();
+            string szoveg = ("\nJelenlegi helyzet: Büfé");
+            Console.WriteLine(szoveg);
+            Console.WriteLine("Megközelíted a büfé létesítményét célod az egyértelmű. A SZÖKÉS (meg egy kis extra)");
+            Console.WriteLine("Megközelíted a büfés csajt, most döl el hogy siker lesz-e vagy bukás.");
+            Console.ReadLine();
+            if (true) //szteroidtól függ meg talán lesz good-bad beszélgetés opció nagyon nem akarom megcsinálni
+            {
+                Console.WriteLine("Hosszas beszélgetés után számos mély témáról, elérsz a lényegre - elkéred a telefonszámát és ő boldogan odaadja neked." +
+                    "\nEzután szépen megkéred hogy engedjen ki a büfé hátulján keresztül. Biztonság kedvéért elkezded feszegetni magadat" +
+                    "\nTermészetesen miután a kiinduló kapcsolat alapja le lett helyezve segítségedre fordul.");
+                Console.ReadLine();
+                eletkedv += 25;
+                idegallapot -= 10;
+                return 1;
+            }
+            else if (voltálmáritt == true) // nincsen szteroid
+            {
+                Console.WriteLine("Ahogyan elkezded a büfé felé venni az irányodat, belegondolsz hogy előzőleg mi történt és inkább sarkon fordulsz");
+                return 3;
+            }
+            else
+            {
+                Console.WriteLine("Hiába erölteted a beszélgetést de az nem halad sehova sem, és kínos csönd áll be." +
+                "\nMindennek ellenére azért rápróbálsz hogy esetlegesen kienged-e ebből az átkozott épületből");
+                Console.WriteLine("Kérésed hallatán hangosan kiröhög és megjegyzi hogy ilyen testalkattal ki se férnél a hátsóajtón majd elhajt.");
+                eletkedv -= 25;
+                idegallapot += 10;
+                return 2;
+            }
+
+
         }
         public static int JedlikWC()
         {
