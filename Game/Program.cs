@@ -12,8 +12,7 @@ namespace Game
         //static bool vegyestuzelesukazanhofokmeropalca = false;
         //static bool fomenu = true;
         //static Random random = new Random();
-
-
+        static bool inv; 
         static int eletkedv = 0;
         static int veralkoholszint = 0;
         static int idegallapot = 70;
@@ -46,6 +45,7 @@ namespace Game
                     {
                         eletkedv += 5;
                         Console.WriteLine("Jót aludtál és nagyjából működnek a motorikus képességeid");
+                        Console.ReadLine();
                     }
                     int balintHaz;
                     bool dunaszegtortenes = true;
@@ -615,6 +615,7 @@ namespace Game
                         veralkoholszint = statisztikaKiIro(veralkoholszint, 14, "Véralkoholszint");
                         Console.WriteLine($"\nPénz: {penz}");
                         Console.WriteLine("\nTárgyaid megnézéséhez nyomd meg az: 'I' betűt");
+                        Console.WriteLine("\n------------------------------------------------------------------\n");
                     }
                     if (tulelve == 0)
                     {
@@ -629,6 +630,7 @@ namespace Game
             int programFut()
             {
                 ConsoleKey lenyomottBetu;
+
                 do
                 {
                     Console.Clear();
@@ -639,7 +641,6 @@ namespace Game
                     if (lenyomottBetu == ConsoleKey.I)
                     {
                         Inventory();
-
                     }
                     if (lenyomottBetu == ConsoleKey.UpArrow)
                     {
@@ -717,7 +718,6 @@ namespace Game
             if (snussz) szoveg += "\n\tSnüssz";
             if (ostor) szoveg += "\n\tOstor";
             if (vegyestuzelesukazanhofokmeropalca) szoveg += "\n\tKazánhőfokmérő";
-            Console.WriteLine("Használható:");
             string[] valasztasok = { "Kilépés" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
@@ -739,7 +739,6 @@ namespace Game
                                                                           |  $$$$$$/|  $$$$$$/                                | $$      |  $$$$$$/              
                                                                            \______/  \______/                                 |__/       \______/               
             ";
-
             string[] valasztasok = { "Játékhoz Nyomj Entert!" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
