@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -74,30 +75,33 @@ namespace Game
             {
                 Console.WriteLine("\nVincze Flórián úgy dönt hogy ma nem akar izmozni elmarad a tanóra.");
                 Console.ReadKey();
+                idegallapot -= 10;
             }
             else
             {
-                int palitolLopottIndex = 0;
+                int index = 0;
                 string[] igenVagyNem = { "Elbeszélgetsz Vincze Flóriánnal", "Nem akarod cseszegetni ezért csöndben maradsz" };
-                palitolLopottFunction();
-                if (palitolLopottIndex == 0)
+                programFut();
+                if (index == 0)
                 {
                     Console.WriteLine("\nVincze Flórián elmondja hogy a B épületben a mai nap nem működnek a kamerák - támadt egy csalafinta ötleted.");
                     multiMeterChance = 100;
                     Console.ReadKey();
                 }
-                if (palitolLopottIndex == 1)
+                if (index == 1)
                 {
                     Console.WriteLine("\nMegvolt a chilles kis óra csak a szokásos.");
+                    idegallapot -= 5;
+                    eletkedv += 5;
                     Console.ReadKey();
                 }
-                void valaszthatoEsemeny()
+                void opciokMegjelenitese()
                 {
                     Console.WriteLine(szoveg);
                     for (int i = 0; i < igenVagyNem.Length; i++)
                     {
                         string jelenlegiPozicio = igenVagyNem[i];
-                        if (i == palitolLopottIndex)
+                        if (i == index)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                         }
@@ -109,34 +113,34 @@ namespace Game
                         Console.ForegroundColor = ConsoleColor.White;
                     }
                 }
-                int palitolLopottFunction()
+                int programFut()
                 {
                     ConsoleKey lenyomottBetu;
                     do
                     {
                         Console.Clear();
-                        valaszthatoEsemeny();
+                        opciokMegjelenitese();
 
                         ConsoleKeyInfo betuInfo = Console.ReadKey(true);
                         lenyomottBetu = betuInfo.Key;
                         if (lenyomottBetu == ConsoleKey.UpArrow)
                         {
-                            palitolLopottIndex--;
-                            if (palitolLopottIndex == -1)
+                            index--;
+                            if (index == -1)
                             {
-                                palitolLopottIndex = igenVagyNem.Length - 1;
+                                index = igenVagyNem.Length - 1;
                             }
                         }
                         else if (lenyomottBetu == ConsoleKey.DownArrow)
                         {
-                            palitolLopottIndex++;
-                            if (palitolLopottIndex == igenVagyNem.Length)
+                            index++;
+                            if (index == igenVagyNem.Length)
                             {
-                                palitolLopottIndex = 0;
+                                index = 0;
                             }
                         }
                     } while (lenyomottBetu != ConsoleKey.Enter);
-                    return palitolLopottIndex;
+                    return index;
                 }
             }
             string[] valasztasok = { "Folyosó" };
@@ -209,7 +213,8 @@ namespace Game
             {
                 Console.WriteLine("\nTaláltál aprót elhajítva a földön. Elég hanyag volt előző gazdája, te sokkal jobban bánsz majd vele.");
                 Console.ReadKey();
-                penz += 500;
+                penz += 1000;
+                voltFolyoso = true;
             }
             else
             {
@@ -217,6 +222,7 @@ namespace Game
                 Console.ReadKey();
                 eletkedv -= 5;
                 idegallapot += 5;
+                voltFolyoso = true;
             }
             string[] valasztasok = { "Büfé", "Jedlik wéce", "B épület átjáró", "Nővérke" };
             int valasztottIndex = Menu(szoveg, valasztasok);
@@ -268,22 +274,13 @@ namespace Game
         }
         public static int JedlikWC()
         {
-            string choice;
-            int Value;
             Console.Clear();
             string szoveg = ("\nJelenlegi helyzet: Jedlik WC");
-            Console.WriteLine(szoveg);
-            do
-            {
-                Console.WriteLine("Beléptél a földi pokolba ahol minden fajta nemi betegség megtalálható - a jedlik véce- mit teszel? " +
-                    "\n1.Hotbox " +
-                    "\n2.Elengeded a hugyhólyagodat aztán jólvanazúgy");
-                choice = Console.ReadLine();
-                int.TryParse(choice, out int value);
-                Value = value;
-            } while (Value != 1 && Value != 2);
-
-            if (Value == 1)
+            Console.WriteLine("Beléptél a földi pokolba ahol minden fajta nemi betegség megtalálható - a jedlik véce- mit teszel?");
+            int index = 0;
+            string[] igenVagyNem = { "Hotbox", "Elengeded a hugyhólyagodat aztán jólvanazúgy" };
+            programFut();
+            if (index == 0)
             {
                 Console.WriteLine("Tiszta élvezettel telefújtad az egész budoir helységét rákkeltő füsttel és kielégítve érzed magad.");
                 Console.ReadLine();
@@ -294,18 +291,67 @@ namespace Game
                 {
                     Console.WriteLine("Tündike éppen a bagarellózásod közben jött be kéjkedni a férfi mellékhelységbe. Házirend szegésedet jelentette a hologramm igazgatónak aki kiküld az iskolából");
                     Console.ReadLine();
+                    return 1;
                 }
-
+                else
+                {
+                    return 2;
+                }
             }
             else
             {
                 Console.WriteLine("Úgy döntöttél hogy a házirendet betartó talpnyaló leszel és a WC-t arra használod amire kitalálták. Egy kifejezetten jót hugyoztál");
                 Console.ReadLine();
                 idegallapot -= 5;
+                return 2;
             }
-            string[] valasztasok = { "Büfé", "B épület átjáró" };
-            int valasztottIndex = Menu(szoveg, valasztasok);
-            return valasztottIndex;
+            void opciokMegjelenitese()
+            {
+                Console.WriteLine(szoveg);
+                for (int i = 0; i < igenVagyNem.Length; i++)
+                {
+                    string jelenlegiPozicio = igenVagyNem[i];
+                    if (i == index)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine($"<< {jelenlegiPozicio} >>");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+            int programFut()
+            {
+                ConsoleKey lenyomottBetu;
+                do
+                {
+                    Console.Clear();
+                    opciokMegjelenitese();
+
+                    ConsoleKeyInfo betuInfo = Console.ReadKey(true);
+                    lenyomottBetu = betuInfo.Key;
+                    if (lenyomottBetu == ConsoleKey.UpArrow)
+                    {
+                        index--;
+                        if (index == -1)
+                        {
+                            index = igenVagyNem.Length - 1;
+                        }
+                    }
+                    else if (lenyomottBetu == ConsoleKey.DownArrow)
+                    {
+                        index++;
+                        if (index == igenVagyNem.Length)
+                        {
+                            index = 0;
+                        }
+                    }
+                } while (lenyomottBetu != ConsoleKey.Enter);
+                return index;
+            }
         }
         public static int BFolyoso() 
         {
@@ -333,23 +379,15 @@ namespace Game
 
         public static int Nővérke()
         {
-            string choice;
-            int Value;
             Console.Clear();
             string szoveg = ("\nJelenlegi helyzet: Az iskolai orvosi igazolás adására felhatalmazott személy tanyája" +
                 "\nMegpróbálhatsz kijutni ebből a fosból az igazolásával.");
             Console.WriteLine(szoveg);
             Console.ReadLine();
-            do
-            {
-                Console.WriteLine("Mi a következő cselekedeted? " +
-                    "\n1.Bemész igazolásért " +
-                    "\n2.Inkább végigszenveded a napot hátha találsz még valamit");
-                choice = Console.ReadLine();
-                int.TryParse(choice, out int value);
-                Value = value;
-            } while (Value != 1 && Value != 2);
-            if (Value == 1 && AnnyiraNemAkarom == false)
+            int index = 0;
+            string[] igenVagyNem = { "Bemész igazolásért", "Inkább végigszenveded a napot hátha találsz még valamit" };
+            programFut();
+            if (index == 0 && AnnyiraNemAkarom == false)
             {
                 Console.WriteLine("");
                 Console.ReadLine();
@@ -362,6 +400,7 @@ namespace Game
                         "\nTeljes átéléssel eljátszod a hattyúk halálát ami meghatja és hazaküld");
                     kiszokes = true;
                     Console.ReadLine();
+                    AnnyiraNemAkarom = true;
                     return 0;
                 }
                 else
@@ -369,20 +408,67 @@ namespace Game
                     Console.WriteLine("Hiába esedezel elötte térdre rogyva, ő úgy döntött hogy ma bizony meg kell bírkoznod az akadájokkal ebben a szutykos épületben");
                     string[] valasztasok = { "Folyosó" };
                     int valasztottIndex = Menu(szoveg, valasztasok);
+                    AnnyiraNemAkarom = true;
                     return valasztottIndex;
                 }
             }
-            else if (AnnyiraNemAkarom == false)
+            else if (index == 1 && AnnyiraNemAkarom == false)
             {
-                Console.WriteLine("Hosszú gondolkozás után a jobbik feled nyeri a fejedben a vitát és úgy döntesz hogy már azért már a ló nemiszervének is van vége és isten legerősebb katonájaként megpróbálod átvészelni a napot");
-                string[] valasztasok = { "Folyosó" };
-                int valasztottIndex = Menu(szoveg, valasztasok);
-                return valasztottIndex;
+                Console.WriteLine("Hosszú gondolkozás után a jobbik feled nyeri a fejedben a vitát és úgy döntesz hogy már azért már a ló nemiszervének is van vége és isten legerősebb katonájaként megpróbálod átvészelni a napot\"");
+                Console.ReadLine();
+                return 2;
             }
             else
             {
                 Console.WriteLine("Már ahogyan kezded másodjára megközelíteni a védőnő irodáját, távolról elkerget a világ másik végére pofátlanságod miatt");
                 return 0;
+            }
+            void opciokMegjelenitese()
+            {
+                Console.WriteLine(szoveg);
+                for (int i = 0; i < igenVagyNem.Length; i++)
+                {
+                    string jelenlegiPozicio = igenVagyNem[i];
+                    if (i == index)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine($"<< {jelenlegiPozicio} >>");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+            int programFut()
+            {
+                ConsoleKey lenyomottBetu;
+                do
+                {
+                    Console.Clear();
+                    opciokMegjelenitese();
+
+                    ConsoleKeyInfo betuInfo = Console.ReadKey(true);
+                    lenyomottBetu = betuInfo.Key;
+                    if (lenyomottBetu == ConsoleKey.UpArrow)
+                    {
+                        index--;
+                        if (index == -1)
+                        {
+                            index = igenVagyNem.Length - 1;
+                        }
+                    }
+                    else if (lenyomottBetu == ConsoleKey.DownArrow)
+                    {
+                        index++;
+                        if (index == igenVagyNem.Length)
+                        {
+                            index = 0;
+                        }
+                    }
+                } while (lenyomottBetu != ConsoleKey.Enter);
+                return index;
             }
         }
         public static int TesiOltozo() 
@@ -428,33 +514,74 @@ namespace Game
             Console.Clear();
             string szoveg = ("\nJelenlegi helyzet: Testnevelés öltöző");
             Console.WriteLine(szoveg);
-            string choice;
-            int Value;
             int Roplabda = 0;
-            do
-            {
-                Console.WriteLine("Ahogyan elsuhansz a ping-pong asztalok mellett megpillantod Németh Ádám-ot és a hatalmas bicepszeit. Zavartságodban gondolkozol hogy mi tévő legyél." +
-                    "\n1.Megdícséred a cipőjét" +
-                    "\n2.Elpirulsz hatalmas ágyúi láttán és csöndben maradsz");
-                choice = Console.ReadLine();
-                int.TryParse(choice, out int value);
-                Value = value;
-            } while (Value != 1 && Value != 2);
-            if (Value == 1)
+            Console.WriteLine("Ahogyan elsuhansz a ping-pong asztalok mellett megpillantod Németh Ádám-ot és a hatalmas bicepszeit. Zavartságodban gondolkozol hogy mi tévő legyél.");
+            int index = 0;
+            string[] igenVagyNem = { "Megdícséred a cipőjét", "Elpirulsz hatalmas ágyúi láttán és csöndben maradsz" };
+            programFut();
+            if (index == 0)
             {
                 Console.WriteLine("Németh Ádám nagyon hálás dicséreted hallatán és viszonozza a kedves szavakat.");
                 Console.ReadLine();
                 eletkedv += 5;
                 Roplabda -= 1;
             }
-            else
+            if (index == 1)
             {
+                Console.WriteLine("nya :3");
                 Roplabda += 1;
             }
             Console.WriteLine("Ahogyan belépsz a terembe meglátod a borzasztó röplabda hálókat. Már tudod mi következik" +
                 "\nNagyra táguló bociszemekkel kérleled Németh Ádámot hogy had engedje el ezt most így." +
                 "\nA tanárúr mélyen gondolkodásba esik");
             Console.ReadLine();
+            void opciokMegjelenitese()
+            {
+                Console.WriteLine(szoveg);
+                for (int i = 0; i < igenVagyNem.Length; i++)
+                {
+                    string jelenlegiPozicio = igenVagyNem[i];
+                    if (i == index)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    Console.WriteLine($"<< {jelenlegiPozicio} >>");
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+            }
+            int programFut()
+            {
+                ConsoleKey lenyomottBetu;
+                do
+                {
+                    Console.Clear();
+                    opciokMegjelenitese();
+
+                    ConsoleKeyInfo betuInfo = Console.ReadKey(true);
+                    lenyomottBetu = betuInfo.Key;
+                    if (lenyomottBetu == ConsoleKey.UpArrow)
+                    {
+                        index--;
+                        if (index == -1)
+                        {
+                            index = igenVagyNem.Length - 1;
+                        }
+                    }
+                    else if (lenyomottBetu == ConsoleKey.DownArrow)
+                    {
+                        index++;
+                        if (index == igenVagyNem.Length)
+                        {
+                            index = 0;
+                        }
+                    }
+                } while (lenyomottBetu != ConsoleKey.Enter);
+                return index;
+            }
             if (Roplabda == -1)
             {
                 Console.WriteLine("Először kételkedsz sikeredben, de mivel megdícsérted a lépőjét kegyelmes veled szemben");
@@ -485,33 +612,26 @@ namespace Game
             }
             else
             {
-                string choice;
-                int Value;
-                do
-                {
-                    Console.WriteLine("Mihejst belépsz a terembe szemrevételezed a sok elektronikai eszközt ami a teremben található." +
-                        "\n eszedbe jut hogy a mai nap nem működnke a kamerák, egy döntés áll elébe." +
-                        "\n1.Megpróbálod ellponi a multimétert." +
-                        "\n2.Inkább tanulmányozod a Karnough-táblát");
-                    choice = Console.ReadLine();
-                    int.TryParse(choice, out int value);
-                    Value = value;
-                } while (Value != 1 && Value != 2);
-                if (multiMeterChance == 100 && Value == 1 && ennyitTerveztemMára == false)
+                Console.WriteLine("Mihejst belépsz a terembe szemrevételezed a sok elektronikai eszközt ami a teremben található." +
+                    "\n eszedbe jut hogy a mai nap nem működnke a kamerák, egy döntés áll elébe.");
+                int index = 0;
+                string[] igenVagyNem = { "Megpróbálod ellponi a multimétert", "Inkább tanulmányozod a Karnough-táblát" };
+                programFut();
+                if (multiMeterChance == 100 && index == 1 && ennyitTerveztemMára == false)
                 {
                     Console.WriteLine("Könnyedén elrakod a multimétert és teljes nyugodtsággodat megőrzöd annak tudatában hogy nincs bizonyíték.");
                     Console.ReadLine();
                     multimeter = true;
                     ennyitTerveztemMára = true;
                 }
-                else if (multiMeterChance != 100 && Value == 1 && ennyitTerveztemMára == false)
+                else if (multiMeterChance != 100 && index == 1 && ennyitTerveztemMára == false)
                 {
                     Console.WriteLine("Hirtelen zsebrerakod a multimétert viszont fentáll a veszélye hogy a portás látta a kamerán. Szíved elkezd sietve verni");
                     Console.ReadLine();
                     multimeter = true;
                     Random RandomCaught = new Random();
                     int GettinCaught = RandomCaught.Next(0, 101);
-                    if(GettinCaught <= 30)
+                    if (GettinCaught <= 30)
                     {
                         Console.WriteLine("Ahogyan vége van az órának megközelít a biztiboy és a hiányzó multimétert keresi rajtad." +
                             "\nEgy gyors motozás után megtalálja és visszaveszi, valamint minden illegális tárgyat elkoboz tőled.");
@@ -540,6 +660,53 @@ namespace Game
                 else
                 {
                     Console.WriteLine("Józan ember nem jönne be másodjára ebbe a terembe még kinzás fenyegetésével sem. Hirtelen észreveszed magadat és gyorsan kisietsz a teremből");
+                }
+                void opciokMegjelenitese()
+                {
+                    Console.WriteLine(szoveg);
+                    for (int i = 0; i < igenVagyNem.Length; i++)
+                    {
+                        string jelenlegiPozicio = igenVagyNem[i];
+                        if (i == index)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                        Console.WriteLine($"<< {jelenlegiPozicio} >>");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                }
+                int programFut()
+                {
+                    ConsoleKey lenyomottBetu;
+                    do
+                    {
+                        Console.Clear();
+                        opciokMegjelenitese();
+
+                        ConsoleKeyInfo betuInfo = Console.ReadKey(true);
+                        lenyomottBetu = betuInfo.Key;
+                        if (lenyomottBetu == ConsoleKey.UpArrow)
+                        {
+                            index--;
+                            if (index == -1)
+                            {
+                                index = igenVagyNem.Length - 1;
+                            }
+                        }
+                        else if (lenyomottBetu == ConsoleKey.DownArrow)
+                        {
+                            index++;
+                            if (index == igenVagyNem.Length)
+                            {
+                                index = 0;
+                            }
+                        }
+                    } while (lenyomottBetu != ConsoleKey.Enter);
+                    return index;
                 }
             }
             string[] valasztasok = { "Hazamész a picsába", "Tesi öltöző" };

@@ -36,6 +36,7 @@ namespace Game
         static bool AnnyiraNemAkarom = false;
         static bool multimeter = false;
         static bool snussz = false;
+        static bool voltFolyoso = false;
         // levi valtozoi
         static bool vegyestuzelesukazanhofokmeropalca = false;
         static int gyorzamolybuszmeg = -1;
@@ -47,6 +48,7 @@ namespace Game
             if (foMenu() == 0)
             {
                 fomenu = false;
+                #region Vidék
                 bool balintHazTortenes = true;
                 if (balintHazTortenes)
                 {
@@ -323,8 +325,8 @@ namespace Game
 
                                             }
                                         }
-
-
+                                        #endregion
+                                        #region Várospt1
                                         bool tortenesVideki = true;
                                         if (tortenesVideki)
                                         {
@@ -508,6 +510,8 @@ namespace Game
                                                                     } while (eurosBolt != 2);
                                                                     euros = Euros();
                                                                     break;
+                                                                #endregion
+                                                                #region Jedlik
                                                                 case 2:
                                                                     int indexBejarat = JedlikBejarat();
                                                                     switch (indexBejarat)
@@ -544,19 +548,14 @@ namespace Game
                                                                                 }
                                                                                 break;
                                                                             case 1:
-                                                                                int querySelector = JedlikWC();
-                                                                                if (querySelector == 0)
+                                                                                int faszomkivan = JedlikWC();
+                                                                                if (faszomkivan == 1)
                                                                                 {
-                                                                                    int bufeigenvagynemmegőrülöknemigaz1 = Bufe();
-                                                                                    if (bufeigenvagynemmegőrülöknemigaz1 == 1)
-                                                                                    {
-                                                                                        //Vasútállomás függvény
-                                                                                        kiszokes = true;
-                                                                                    }
-                                                                                    else if (!kiszokes)
-                                                                                    {
-                                                                                        Folyoso();
-                                                                                    }
+                                                                                    kiszokes = true;
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    Folyoso();
                                                                                 }
                                                                                 break;
                                                                             case 3:
@@ -671,6 +670,8 @@ namespace Game
                                                         } while (euros != 0 && jedlik != 0 && vasut != 0);
                                                     } while (vasut != 0);
                                                     break;
+                                                #endregion
+                                                #region Várospt2
                                                 case 4:
                                                     if (megtamadnak)
                                                     {
@@ -710,6 +711,8 @@ namespace Game
 
                                     }
                                     break;
+                                #endregion
+                                #region Vidékkiegészítő
                                 case 2:
                                     if (otthoniWC)
                                     {
@@ -723,20 +726,8 @@ namespace Game
                                     }
                                     break;
                             }
-
-
-
-
-
                         } while (gyorzamolybuszmeg != 1);
-
-
-
-
-
-
-
-
+                        #endregion
                     } while (true);
                 }
             }
