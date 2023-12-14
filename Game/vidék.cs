@@ -8,7 +8,6 @@ namespace Game
 {
     internal partial class Program
     {
-        Random rand = new Random();
         public static int BalinthazEsemeny()
         {
             string szoveg = "Jelenlegi helyzet: Bálint alszik a szobájában teljesen illuminált állapotban. Szeretnél-e továbbaludni? (Talán jobban lesz)";
@@ -20,7 +19,7 @@ namespace Game
         public static int Balinthaz()
         {
             string szoveg = "Jelenlegi helyzet: Bálint háza";
-            string[] valasztasok = { "Mákvirág kocsma", "Győrzámolyi buszmegálló" };
+            string[] valasztasok = { "Mákvirág kocsma", "Győrzámolyi buszmegálló", "WC használata" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
@@ -39,7 +38,7 @@ namespace Game
         public static int Makviragkocsma()
         {
             string szoveg = "Jelenlegi helyzet: Mákvirág kocsma";
-            string[] valasztasok = { "Virágágyás", "Huggyozda(WC)", "Dunaszeg", "Bálint háza", };
+            string[] valasztasok = { "HITEL VISSZAFIZETÉSE", "Virágágyás", "Huggyozda(WC)", "Dunaszeg", "Bálint háza", };
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }
@@ -121,6 +120,25 @@ namespace Game
         {
             string szoveg = "Jelenlegi helyzet: Győrzámolyi buszmegálló";
             string[] valasztasok = { "Vidéki", "Bálint háza", };
+            int valasztottIndex = Menu(szoveg, valasztasok);
+            return valasztottIndex;
+        }
+        public static int HitelHelyszin()
+        {
+            string szoveg = "Jelenlegi helyzet: Az évek során felhalmozódott hitel visszafizetésére máig kaptál haladékot, valamilyen módon törlesztened kell";
+            if (penz < 6000)
+            {
+                szoveg += "\n\nBármennyire győzködöd a kocsmárost, ennyi pénz nem lesz elég!";
+                szoveg += "\nMegszólal egy hang a fejedben, hogy van erre egy másik mód is...\n";
+            }
+            string[] valasztasok = {"Engedsz a kísértésnek", "Vissza"};
+            if (penz >= 6000)
+            {
+                List<string> list = new();
+                list.AddRange(valasztasok);
+                list[0] = "HITEL VISSZAFIZETÉSE";
+                valasztasok = list.ToArray();
+            }
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }

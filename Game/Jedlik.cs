@@ -14,7 +14,7 @@ namespace Game
         public static int JedlikBejarat()
         {
             Console.Clear();
-            string szoveg = ("\nJelenlegi helyzet: Jedlik bejárata");
+            string szoveg = ("Jelenlegi helyzet: Jedlik bejárata");
             Console.WriteLine(szoveg);
             Random randomEvent = new Random();
             int randomNumber = randomEvent.Next(0, 2);
@@ -337,7 +337,7 @@ namespace Game
             int Value;
             Console.Clear();
             string szoveg = ("\nJelenlegi helyzet: Az iskolai orvosi igazolás adására felhatalmazott személy tanyája" +
-                "\nMegpróbálhatsz kijutni ebből a fosból az igazolásával de akkor sok contentből kimaradsz.");
+                "\nMegpróbálhatsz kijutni ebből a fosból az igazolásával.");
             Console.WriteLine(szoveg);
             Console.ReadLine();
             do
@@ -574,7 +574,10 @@ namespace Game
                     eletkedv -= 15;
                     idegallapot += 30;
                     Korhaz();
-                    return KorhazTulelve();
+                    KorhazTulelve();
+                    string[] valasztasok = { "Vasútállomás aluljáró" };
+                    int valasztottIndex = Menu(szoveg, valasztasok);
+                    return valasztottIndex;
                 }
             }
             else

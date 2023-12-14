@@ -16,7 +16,7 @@ namespace Game
         static int eletkedv = 0;
         static int veralkoholszint = 0;
         static int idegallapot = 70;
-        static int penz = 4000;
+        static int penz = 5800;
         static bool megtamadnak = false;
         static bool bogyok = false;
         static bool fomenu = true;
@@ -61,6 +61,7 @@ namespace Game
                     int balintHaz;
                     bool dunaszegtortenes = true;
                     bool sufnitortenes = true;
+                    bool otthoniWC = true;
                     do
                     {
                         do
@@ -112,6 +113,62 @@ namespace Game
                                         makviragkocsma = Makviragkocsma();
                                         if (makviragkocsma == 0)
                                         {
+                                            int hitelHelyszin =HitelHelyszin();
+                                            if (penz >= 6000 && hitelHelyszin == 0)
+                                            {
+                                                Joveg();
+                                            }
+                                            else if (hitelHelyszin == 0)
+                                            {
+                                                Console.Clear();
+                                                Console.WriteLine("A kocsmában egy hatalmas tömegverekedést indítottál");
+                                                Console.WriteLine("Ebből még bármi lehet...");
+                                                Console.WriteLine("Vigyél be egy hatalmas jobbhorgot");
+                                                Console.ReadLine();
+                                                if (bogyok && fegyverek > 0 && veralkoholszint < 60)
+                                                {
+                                                    Console.WriteLine("Izomtól duzzadó tested és a fegyvered segítségével legyőzted az ellenséget");
+                                                    Console.ReadLine();
+                                                    Console.WriteLine("Diadalittasan távozol");
+                                                    Console.ReadLine();
+                                                    Joveg();
+                                                }
+                                                else if (bogyok && fegyverek > 0 && veralkoholszint >= 60)
+                                                {
+                                                    Console.WriteLine("Izomtól duzzadó tested és a fegyvered habár jó munkát végzett a testedben lévő alkohol miatt kordinálatlan mozgásodat könnyű volt kicselezni");
+                                                    Console.ReadLine();
+                                                    Console.WriteLine("Egy akkora ütést kaptál, amitől már hat hónapja kómában vagy, nem jók az esélyeid");
+                                                    Console.ReadLine();
+                                                    Halal();
+                                                }
+                                                else if (bogyok && fegyverek == 0 && veralkoholszint < 60)
+                                                {
+                                                    Console.WriteLine("Izomtól duzzadó tested nem bizonyult elégnek, akadtak olyanok akik késsel támadtak rád");
+                                                    Console.ReadLine();
+                                                    Console.WriteLine("Késsel rád mért nagy szúrás miatt, a kórházban fekszel nincsenek jó kilátásaid");
+                                                    Console.ReadLine();
+                                                    Halal();
+                                                }
+                                                else if (!bogyok && fegyverek < 0 && veralkoholszint < 60)
+                                                {
+                                                    Console.WriteLine("Fegyvereddel hadonásztál, de senki sem vett komolyan olyan gyenge vagy és könnyűszerrel kicsavarták a kezedből a fegyvert");
+                                                    Console.ReadLine();
+                                                    Console.WriteLine("Ezután úgy szétvertek, hogy édesanyád se ismerne rád");
+                                                    Console.ReadLine();
+                                                    Halal();
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("Egyedül vagy az egész kocsma ellen, ennek nem lesz jó vége...");
+                                                    Console.ReadLine();
+                                                    Console.WriteLine("Úgy szétvertek, hogy édesanyád se ismerne rád");
+                                                    Console.ReadLine();
+                                                    Halal();
+                                                }
+                                            }
+                                        }
+                                        else if (makviragkocsma == 1)
+                                        {
                                             bool viragagyastortenes = true;
                                             if (viragagyastortenes)
                                             {
@@ -136,7 +193,7 @@ namespace Game
                                             }
                                             int viragagyas = Viragagyas();
                                         }
-                                        else if (makviragkocsma == 1)
+                                        else if (makviragkocsma == 2)
                                         {
                                             bool wctortenes = true;
                                             if (wctortenes)
@@ -163,7 +220,7 @@ namespace Game
                                         //    Console.WriteLine("Eljutottál gond nélkül");
                                         //    int gyorzamolybuszmeg = Gyorzamolyibuszmeg();
                                         //}
-                                        else if (makviragkocsma == 2)
+                                        else if (makviragkocsma == 3)
                                         {
                                             kocsmaTortenes = true;
                                             if (random.Next(1, 101) >= 35 && dunaszegtortenes)
@@ -207,6 +264,7 @@ namespace Game
                                                         if (sufniesemeny == 0)
                                                         {
                                                             Console.WriteLine("Gyors reagálásúként felvetted az első dolgot a földről, ami a kezedbe került (kazánhőfokmérő). És voltál olyan ügyes, hogy még kiléted lebukása előtt el tudtad hagyni a helyszínt. Fazakas Tanár Úrt nem zavarta ez a különös eset.");
+                                                            Console.ReadLine();
                                                             vegyestuzelesukazanhofokmeropalca = true;
                                                             fegyverek++;
                                                         }
@@ -228,7 +286,7 @@ namespace Game
                                                         {
                                                             Console.WriteLine("Pontos okát nem tudni de a bizonytalan döntéshozás közben tragikus gyorsasággal hagytad itt a bolygót. Szemtanúk szerint nagy fények voltak, a hatóságok azóta sem találtak meg");
                                                             Console.ReadLine();
-                                                            Environment.Exit(0);
+                                                            Halal();
                                                         }
                                                     }
 
@@ -236,7 +294,7 @@ namespace Game
                                                 }
                                             } while (dunaszeg != 1);
                                         }
-                                    } while (makviragkocsma != 3);
+                                    } while (makviragkocsma != 4);
                                     break;
                                 case 1:
                                     Console.WriteLine("Random nyuggerek mint MINDIG a megállóban kiengedték világfájdalmukat és el kezdtek beszólogatni. Nem bírtad magadat tűrtöztenip és egy kisebb migrént kaptál.");
@@ -652,6 +710,18 @@ namespace Game
 
                                     }
                                     break;
+                                case 2:
+                                    if (otthoniWC)
+                                    {
+                                        idegallapot -= 20;
+                                        otthoniWC = false;
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Most voltál, nem jön semmi...");
+                                        Console.ReadLine();
+                                    }
+                                    break;
                             }
 
 
@@ -674,85 +744,6 @@ namespace Game
 
 
         }
-        //    public static int Menu(string szoveg, string[] valasztasok)
-        //    {
-        //        int valasztottIndex = 0;
-        //        return programFut();
-        //        void opciokMegjelenitese()
-        //        {
-        //            Console.WriteLine(szoveg);
-        //            for (int i = 0; i < valasztasok.Length; i++)
-        //            {
-        //                string jelenlegiPozicio = valasztasok[i];
-        //                if (i == valasztottIndex)
-        //                {
-        //                    Console.ForegroundColor = ConsoleColor.Green;
-        //                }
-        //                else
-        //                {
-        //                    Console.ForegroundColor = ConsoleColor.White;
-        //                }
-        //                Console.WriteLine($"<< {jelenlegiPozicio} >>");
-        //                Console.ForegroundColor = ConsoleColor.White;
-        //            }
-        //            if (valasztasok.Length > 1)
-        //            {
-        //                Console.Write($"\nÉletkedv: {eletkedv}\nIdegállapot: {idegallapot}\nVéralkoholszint: {veralkoholszint}\nPénz: {penz}");
-        //            }
-
-        //        }
-        //        int programFut()
-        //        {
-        //            ConsoleKey lenyomottBetu;
-        //            do
-        //            {
-        //                Console.Clear();
-        //                opciokMegjelenitese();
-
-        //                ConsoleKeyInfo betuInfo = Console.ReadKey(true);
-        //                lenyomottBetu = betuInfo.Key;
-        //                if (lenyomottBetu == ConsoleKey.UpArrow)
-        //                {
-        //                    valasztottIndex--;
-        //                    if (valasztottIndex == -1)
-        //                    {
-        //                        valasztottIndex = valasztasok.Length - 1;
-        //                    }
-        //                }
-        //                else if (lenyomottBetu == ConsoleKey.DownArrow)
-        //                {
-        //                    valasztottIndex++;
-        //                    if (valasztottIndex == valasztasok.Length)
-        //                    {
-        //                        valasztottIndex = 0;
-        //                    }
-        //                }
-        //            } while (lenyomottBetu != ConsoleKey.Enter);
-        //            return valasztottIndex;
-        //        }
-
-        //    }
-        //    public static int foMenu()
-        //    {
-        //        string szoveg = @"
-        // /$$$$$$$            /$$ /$$             /$$                                                                                                             /$$
-        //| $$__  $$          | $$|__/            | $$                                                                                                            | $$
-        //| $$  \ $$  /$$$$$$ | $$ /$$ /$$$$$$$  /$$$$$$                /$$$$$$   /$$$$$$  /$$   /$$             /$$$$$$$   /$$$$$$   /$$$$$$        /$$  /$$$$$$ | $$
-        //| $$$$$$$  |____  $$| $$| $$| $$__  $$|_  $$_/               /$$__  $$ /$$__  $$| $$  | $$            | $$__  $$ |____  $$ /$$__  $$      |__/ |____  $$| $$
-        //| $$__  $$  /$$$$$$$| $$| $$| $$  \ $$  | $$                | $$$$$$$$| $$  \ $$| $$  | $$            | $$  \ $$  /$$$$$$$| $$  \ $$       /$$  /$$$$$$$|__/
-        //| $$  \ $$ /$$__  $$| $$| $$| $$  | $$  | $$ /$$            | $$_____/| $$  | $$| $$  | $$            | $$  | $$ /$$__  $$| $$  | $$      | $$ /$$__  $$    
-        //| $$$$$$$/|  $$$$$$$| $$| $$| $$  | $$  |  $$$$/            |  $$$$$$$|  $$$$$$$|  $$$$$$$            | $$  | $$|  $$$$$$$| $$$$$$$/      | $$|  $$$$$$$ /$$
-        //|_______/  \_______/|__/|__/|__/  |__/   \___/               \_______/ \____  $$ \____  $$            |__/  |__/ \_______/| $$____/       | $$ \_______/|__/
-        //                                                                         /$$  \ $$ /$$  | $$                                | $$       /$$  | $$              
-        //                                                                      |  $$$$$$/|  $$$$$$/                                | $$      |  $$$$$$/              
-        //                                                                       \______/  \______/                                 |__/       \______/               
-        //        ";
-        //        string[] valasztasok = { "Játékhoz Nyomj Entert!" };
-        //        int valasztottIndex = Menu(szoveg, valasztasok);
-        //        return valasztottIndex;
-        //    }
-
-
         public static int Menu(string szoveg, string[] valasztasok)
         {
             int valasztottIndex = 0;
