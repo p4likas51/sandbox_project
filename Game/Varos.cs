@@ -58,6 +58,20 @@ namespace Game
         {
             string szoveg = "Jelenlegi helyzet: Dohi.";
             string[] valasztasok = { "Alkohol vétel", "Cigi vétel", "Nem kell semmi" };
+            if (multimeter)
+            {
+                List<string> list = new();
+                list.AddRange(valasztasok);
+                list.Add("Multiméter eladása");
+                valasztasok = list.ToArray();
+            }
+            if (multiellettadva)
+            {
+                List<string> list = new();
+                list.AddRange(valasztasok);
+                list.Remove("Multiméter eladása");
+                valasztasok = list.ToArray();
+            }
             int valasztottIndex = Menu(szoveg, valasztasok);
             return valasztottIndex;
         }

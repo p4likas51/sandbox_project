@@ -23,6 +23,12 @@ namespace Game
         static int fegyverek = 0;
         static bool ostor = false;
         static int tulelve = 1;
+        static bool tortenesKondi = true;
+        static bool tortenesDohi = true;
+        static bool tortenesAluljaro = true;
+        static bool tortenesEuros = true;
+        static bool Multimetereladas = true;
+        static bool multiellettadva = false;
         static Random random = new Random();
         // balint valtozoi
         static bool voltálmáritt = false;
@@ -338,10 +344,7 @@ namespace Game
                                                 megtamadnak = true;
                                             }
                                         }
-                                        bool tortenesKondi = true;
-                                        bool tortenesDohi = true;
-                                        bool tortenesAluljaro = true;
-                                        bool tortenesEuros = true;
+
                                         int videki;
                                         do
                                         {
@@ -382,6 +385,7 @@ namespace Game
                                                     int dohiBolt;
                                                     do
                                                     {
+                                                        
                                                         dohiBolt = DohiBolt();
                                                         switch (dohiBolt)
                                                         {
@@ -400,6 +404,20 @@ namespace Game
                                                                     idegallapot -= 30;
                                                                     penz -= 1000;
                                                                     eletkedv += 30;
+                                                                }
+                                                                break;
+                                                            case 3:
+                                                                if (multimeter && Multimetereladas)
+                                                                {
+                                                                    Console.WriteLine("Beveted megnyerő mosolyod, és megpróbáod eladni a megszerzett multimétert");
+                                                                    Console.ReadLine();
+                                                                    Console.WriteLine("Meglepő módon sikerült kaptál érte 2000-et");
+                                                                    Console.ReadLine();
+                                                                    penz += 2000;
+                                                                    eletkedv += 10;
+                                                                    Multimetereladas = false;
+                                                                    multimeter = false;
+                                                                    multiellettadva = true;
                                                                 }
                                                                 break;
                                                         }
