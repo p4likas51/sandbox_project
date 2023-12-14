@@ -98,6 +98,7 @@ namespace Game
                                                 if (random.Next(1, 100) <= 5)
                                                 {
                                                     Console.WriteLine("Imre bá felismer téged és rég tett fogadalmát beváltja. Erőszakosan rádtámad és te magatehetetlen vagy. Afgán veterán háborús taktikája ellen nem tudod felvenni a versenyt és bár küzdöttél végül alulmaradtál. ");
+                                                    Console.ReadLine();
                                                     Halal();
                                                 }
                                             }
@@ -317,6 +318,21 @@ namespace Game
                                                             else
                                                             {
                                                                 eletkedv -= 20;
+                                                            }
+                                                        }
+                                                        else if (dohiKunyeralasEsemeny == 2)
+                                                        {
+                                                            if (multimeter)
+                                                            {
+                                                                Console.WriteLine("A híres nemzeti előtt állsz és az előzőleg megszerzett multimétert megpróbálod rásozni valakire." +
+                                                                    "\nKis idő után szembejön veled egy filippínó gyármunkás aki szívesen elfogadja ajánlatodat mondván: 'Köcönöm cépen 3000 pínz jó alkatrész.'");
+                                                                Console.ReadLine();
+                                                                penz += 3000;
+                                                            }
+                                                            else
+                                                            {
+                                                                Console.WriteLine("Egy hang megszólal a fejed hátuljából: Mégis milyen multimétert akarsz eladni hogyha nincsen nálad te world of tanks játékos.");
+                                                                Console.ReadLine();
                                                             }
                                                         }
                                                         tortenesDohi = false;
