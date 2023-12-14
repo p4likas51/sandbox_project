@@ -551,6 +551,9 @@ namespace Game
                         "\nBosszúból minden értéküket ellopod");
                     Console.ReadLine();
                     penz += 2000;
+                    string[] valasztasok = { "Vasútállomás aluljáró" };
+                    int valasztottIndex = Menu(szoveg, valasztasok);
+                    return valasztottIndex;
                 }
                 else
                 {
@@ -560,17 +563,15 @@ namespace Game
                     eletkedv -= 15;
                     idegallapot += 30;
                     Korhaz();
-                    KorhazTulelve();
+                    return KorhazTulelve();
                 }
             }
             else
             {
-                //Vasútállomás függvény
-                return 0;
+                string[] valasztasok = { "Vasútállomás aluljáró" };
+                int valasztottIndex = Menu(szoveg, valasztasok);
+                return valasztottIndex;
             }
-            string[] valasztasok = { "Vasútállomás aluljáró" };
-            int valasztottIndex = Menu(szoveg, valasztasok);
-            return valasztottIndex;
         }
     }
 }
