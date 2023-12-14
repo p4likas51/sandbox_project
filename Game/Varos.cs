@@ -221,7 +221,7 @@ namespace Game
             string[] valasztasok = { "Fekvés a halálos ágyon" };
             int valasztottIndex = Menu(szoveg, valasztasok);
             Thread.Sleep(2000);
-            if (tuleles > 70)
+            if (tuleles > 60)
             {
                 Halal();
             }

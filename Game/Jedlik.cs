@@ -222,37 +222,48 @@ namespace Game
 
         public static int Bufe()
         {
-            bool voltálmáritt = false;
+
             Console.Clear();
             string szoveg = ("\nJelenlegi helyzet: Büfé");
             Console.WriteLine(szoveg);
-            Console.WriteLine("Megközelíted a büfé létesítményét célod az egyértelmű. A SZÖKÉS (meg egy kis extra)");
-            Console.WriteLine("Megközelíted a büfés csajt, most döl el hogy siker lesz-e vagy bukás.");
-            Console.ReadLine();
-            if (bogyok == true) //szteroidtól függ meg talán lesz good-bad beszélgetés opció nagyon nem akarom megcsinálni
+           
+            
+
+            if (bogyok == true && voltálmáritt == false) //szteroidtól függ meg talán lesz good-bad beszélgetés opció nagyon nem akarom megcsinálni
             {
+                Console.WriteLine("Megközelíted a büfé létesítményét célod az egyértelmű. A SZÖKÉS (meg egy kis extra)");
+                Console.WriteLine("Megközelíted a büfés csajt, most döl el hogy siker lesz-e vagy bukás.");
+                Console.ReadLine();
                 Console.WriteLine("Hosszas beszélgetés után számos mély témáról, elérsz a lényegre - elkéred a telefonszámát és ő boldogan odaadja neked." +
                     "\nEzután szépen megkéred hogy engedjen ki a büfé hátulján keresztül. Biztonság kedvéért elkezded feszegetni magadat" +
                     "\nTermészetesen miután a kiinduló kapcsolat alapja le lett helyezve segítségedre fordul.");
                 Console.ReadLine();
                 eletkedv += 25;
                 idegallapot -= 10;
+                voltálmáritt = true;
                 return 1;
             }
             else if (voltálmáritt == true) // nincsen szteroid
             {
                 Console.WriteLine("Ahogyan elkezded a büfé felé venni az irányodat, belegondolsz hogy előzőleg mi történt és inkább sarkon fordulsz");
+                Console.ReadLine();
                 return 3;
             }
-            else
+            else if (voltálmáritt == false)
             {
+                Console.WriteLine("Megközelíted a büfé létesítményét célod az egyértelmű. A SZÖKÉS (meg egy kis extra)");
+                Console.WriteLine("Megközelíted a büfés csajt, most döl el hogy siker lesz-e vagy bukás.");
+                Console.ReadLine();
                 Console.WriteLine("Hiába erölteted a beszélgetést de az nem halad sehova sem, és kínos csönd áll be." +
                 "\nMindennek ellenére azért rápróbálsz hogy esetlegesen kienged-e ebből az átkozott épületből");
                 Console.WriteLine("Kérésed hallatán hangosan kiröhög és megjegyzi hogy ilyen testalkattal ki se férnél a hátsóajtón majd elhajt.");
                 eletkedv -= 25;
                 idegallapot += 10;
+                Console.ReadLine();
+                voltálmáritt = true;
                 return 2;
             }
+            return 3;
 
 
         }
@@ -329,6 +340,7 @@ namespace Game
             string szoveg = ("\nJelenlegi helyzet: Az iskolai orvosi igazolás adására felhatalmazott személy tanyája" +
                 "\nMegpróbálhatsz kijutni ebből a fosból az igazolásával de akkor sok contentből kimaradsz.");
             Console.WriteLine(szoveg);
+            Console.ReadLine();
             do
             {
                 Console.WriteLine("Mi a következő cselekedeted? " +
@@ -349,7 +361,7 @@ namespace Game
                 {
                     Console.WriteLine("A nővérke már akkor mosolyog mikor meglátja hogy már megint te vagy és pontosan tudja mi a célod." +
                         "\nTeljes átéléssel eljátszod a hattyúk halálát ami meghatja és hazaküld");
-                    Vanigazolás = true;
+                    kiszokes = true;
                     Console.ReadLine();
                     return 0;
                 }

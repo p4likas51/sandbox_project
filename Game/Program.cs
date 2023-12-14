@@ -25,6 +25,8 @@ namespace Game
         static int tulelve = 1;
         static Random random = new Random();
         // balint valtozoi
+        static bool voltálmáritt = false;
+        static bool kiszokes = false;
         static int multiMeterChance = 50;
         static bool voltOltozes = false;
         static bool voltTömő = false;
@@ -32,7 +34,6 @@ namespace Game
         static bool voltOra = false;
         static bool ennyitTerveztemMára = false;
         static bool AnnyiraNemAkarom = false;
-        static bool Vanigazolás = false;
         static bool multimeter = false;
         static bool snussz = false;
         // levi valtozoi
@@ -45,157 +46,7 @@ namespace Game
 
             if (foMenu() == 0)
             {
-                int indexBejarat = JedlikBejarat();
-                switch (indexBejarat)
-                {
-                    case 0:
-                        FazakasTerem();
-                        break;
-                    case 1:
-                        Vinczeterem();
-                        break;
-                    case 2:
-                        int nemtudom = CTerem();
-                        if (nemtudom == 1)
-                        {
-                            cPadlas();
-                        }
-                        break;
-                }
-                int dokument = Folyoso();
-                switch (dokument)
-                {
-                    case 0:
-                        int bufeigenvagynemmegőrülöknemigaz = Bufe();
-                        if (bufeigenvagynemmegőrülöknemigaz == 1)
-                        {
-                            //Vasútállomás függvény
-                        }
-                        else
-                        {
-                            Folyoso();
-                        }
-                        break;
-                    case 1:
-                        int querySelector = JedlikWC();
-                        if (querySelector == 0)
-                        {
-                            int bufeigenvagynemmegőrülöknemigaz1 = Bufe();
-                            if (bufeigenvagynemmegőrülöknemigaz1 == 1)
-                            {
-                                //Vasútállomás függvény
-                            }
-                            else
-                            {
-                                Folyoso();
-                            }
-                        }
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        Nővérke();
-                        break;
-                }
-                if (Vanigazolás == true)
-                {
-                    JedlikKijarat();
-                }
-                else
-                {
-                    int dokumentPont = BFolyoso();
-                    switch (dokumentPont)
-                    {
-                        case 0:
-                            int námbör_sziksz = TesiOltozo();
-                            if (námbör_sziksz == 0)
-                            {
-                                int guh = TesiTerem();
-                                if (guh == 0)
-                                {
-                                    JedlikKijarat();
-                                }
-                                else
-                                {
-                                    int nem2 = SZGTerem();
-                                    if (nem2 == 0)
-                                    {
-                                        JedlikKijarat();
-                                    }
-                                    else
-                                    {
-                                        TesiOltozo();
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                int nem1 = SZGTerem();
-                                if (nem1 == 0)
-                                {
-                                    JedlikKijarat();
-                                }
-                                else
-                                {
-                                    int námbör_sziksz1 = TesiOltozo();
-                                    if (námbör_sziksz1 == 0)
-                                    {
-                                        int guh1 = TesiTerem();
-                                        if (guh1 == 0)
-                                        {
-                                            JedlikKijarat();
-                                        }
-                                        else
-                                        {
-                                            int nem2 = SZGTerem();
-                                            if (nem2 == 0)
-                                            {
-                                                JedlikKijarat();
-                                            }
-                                            else
-                                            {
-                                                TesiOltozo();
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            break;
-                        case 1:
-                            int nem = SZGTerem();
-                            if (nem == 0)
-                            {
-                                JedlikKijarat();
-                            }
-                            else
-                            {
-                                int námbör_sziksz3 = TesiOltozo();
-                                if (námbör_sziksz3 == 0)
-                                {
-                                    int guh3 = TesiTerem();
-                                    if (guh3 == 0)
-                                    {
-                                        JedlikKijarat();
-                                    }
-                                    else
-                                    {
-                                        int nem3 = SZGTerem();
-                                        if (nem3 == 0)
-                                        {
-                                            JedlikKijarat();
-                                        }
-                                        else
-                                        {
-                                            TesiOltozo();
-                                        }
-                                    }
-                                }
-                            }
-                            break;
-                    }
-                    //Vasútállomás függvény
-                }
-        fomenu = false;
+                fomenu = false;
                 bool balintHazTortenes = true;
                 if (balintHazTortenes)
                 {
@@ -219,6 +70,7 @@ namespace Game
                             switch (balintHaz)
                             {
                                 case 0:
+                                    int randomKocsma = random.Next(1, 3);
                                     kocsmaTortenes = true;
                                     int kocsmaesemeny = MakviragkocsmaEsemeny();
                                     if (kocsmaTortenes)
@@ -232,24 +84,23 @@ namespace Game
                                         }
                                         if (kocsmaesemeny == 2)
                                         {
-                                            if (random.Next(1, 3) == 1)
+                                            if (randomKocsma == 1)
                                             {
                                                 eletkedv += 20;
                                                 Console.WriteLine("Beszélgettél az egyik helyi erővel, aki régi afgán veterán történeteket hablatyolt össze. Mivel tetszett, amit mondott így kicsit jobban érzed magad.  \nTováb a folytatáshoz");
                                                 Console.ReadLine();
                                             }
-                                            else if (random.Next(1, 3) == 2)
+                                            else if (randomKocsma == 2)
                                             {
                                                 idegallapot += 40;
                                                 Console.WriteLine("Egyik részeg afgán veterán(Imre bá)nak nem tetszett a pofád és megfenyegetett, hogy gyomron rúg. Bevettette arab háborús taktikáját de nem járt sikerrel így csak mentálisan épített le.  \nTováb a folytatáshoz");
                                                 Console.ReadLine();
+                                                if (random.Next(1, 100) <= 5)
+                                                {
+                                                    Console.WriteLine("Imre bá felismer téged és rég tett fogadalmát beváltja. Erőszakosan rádtámad és te magatehetetlen vagy. Afgán veterán háborús taktikája ellen nem tudod felvenni a versenyt és bár küzdöttél végül alulmaradtál. ");
+                                                    Halal();
+                                                }
                                             }
-                                            else if (random.Next(1, 100) <= 5)
-                                            {
-                                                Console.WriteLine("Imre bá felismer téged és rég tett fogadalmát beváltja. Erőszakosan rádtámad és te magatehetetlen vagy. Afgán veterán háborús taktikája ellen nem tudod felvenni a versenyt és bár küzdöttél végül alulmaradtál. ");
-                                                Environment.Exit(0);
-                                            }
-
                                         }
                                     }
                                     kocsmaTortenes = false;
@@ -584,8 +435,161 @@ namespace Game
                                                                     euros = Euros();
                                                                     break;
                                                                 case 2:
-                                                                    Korhaz();
-                                                                    jedlik = KorhazTulelve();
+                                                                    int indexBejarat = JedlikBejarat();
+                                                                    switch (indexBejarat)
+                                                                    {
+                                                                        case 0:
+                                                                            FazakasTerem();
+                                                                            break;
+                                                                        case 1:
+                                                                            Vinczeterem();
+                                                                            break;
+                                                                        case 2:
+                                                                            int nemtudom = CTerem();
+                                                                            if (nemtudom == 1)
+                                                                            {
+                                                                                cPadlas();
+                                                                            }
+                                                                            break;
+                                                                    }
+                                                                    int dokument = Folyoso();
+                                                                    do
+                                                                    {
+                                                                        switch (dokument)
+                                                                        {
+                                                                            case 0:
+                                                                                int bufeigenvagynemmegőrülöknemigaz = Bufe();
+                                                                                if (bufeigenvagynemmegőrülöknemigaz == 1)
+                                                                                {
+                                                                                    //Vasútállomás függvény
+                                                                                    kiszokes = true;
+                                                                                }
+                                                                                else if (!kiszokes)
+                                                                                {
+                                                                                    Folyoso();
+                                                                                }
+                                                                                break;
+                                                                            case 1:
+                                                                                int querySelector = JedlikWC();
+                                                                                if (querySelector == 0)
+                                                                                {
+                                                                                    int bufeigenvagynemmegőrülöknemigaz1 = Bufe();
+                                                                                    if (bufeigenvagynemmegőrülöknemigaz1 == 1)
+                                                                                    {
+                                                                                        //Vasútállomás függvény
+                                                                                        kiszokes = true;
+                                                                                    }
+                                                                                    else if (!kiszokes)
+                                                                                    {
+                                                                                        Folyoso();
+                                                                                    }
+                                                                                }
+                                                                                break;
+                                                                            case 3:
+                                                                                Nővérke();
+                                                                                break;
+                                                                        }
+                                                                    } while (dokument != 2 && kiszokes != true);
+                                                                    
+                                                                    if (kiszokes == true)
+                                                                    {
+                                                                        jedlik =JedlikKijarat();
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        int dokumentPont = BFolyoso();
+                                                                        switch (dokumentPont)
+                                                                        {
+                                                                            case 0:
+                                                                                int námbör_sziksz = TesiOltozo();
+                                                                                if (námbör_sziksz == 0)
+                                                                                {
+                                                                                    int guh = TesiTerem();
+                                                                                    if (guh == 0)
+                                                                                    {
+                                                                                        jedlik = JedlikKijarat();
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        int nem2 = SZGTerem();
+                                                                                        if (nem2 == 0)
+                                                                                        {
+                                                                                            jedlik =JedlikKijarat();
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            TesiOltozo();
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    int nem1 = SZGTerem();
+                                                                                    if (nem1 == 0)
+                                                                                    {
+                                                                                        jedlik = JedlikKijarat();
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        int námbör_sziksz1 = TesiOltozo();
+                                                                                        if (námbör_sziksz1 == 0)
+                                                                                        {
+                                                                                            int guh1 = TesiTerem();
+                                                                                            if (guh1 == 0)
+                                                                                            {
+                                                                                                jedlik = JedlikKijarat();
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                int nem2 = SZGTerem();
+                                                                                                if (nem2 == 0)
+                                                                                                {
+                                                                                                    jedlik = JedlikKijarat();
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    TesiOltozo();
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                                break;
+                                                                            case 1:
+                                                                                int nem = SZGTerem();
+                                                                                if (nem == 0)
+                                                                                {
+                                                                                    jedlik = JedlikKijarat();
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    int námbör_sziksz3 = TesiOltozo();
+                                                                                    if (námbör_sziksz3 == 0)
+                                                                                    {
+                                                                                        int guh3 = TesiTerem();
+                                                                                        if (guh3 == 0)
+                                                                                        {
+                                                                                            jedlik = JedlikKijarat();
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            int nem3 = SZGTerem();
+                                                                                            if (nem3 == 0)
+                                                                                            {
+                                                                                                jedlik = JedlikKijarat();
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                TesiOltozo();
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                                break;
+                                                                        }
+                                                                        //Vasútállomás függvény
+                                                                    }
+
 
                                                                     break;
                                                             }
@@ -868,6 +872,7 @@ namespace Game
             if (bogyok) szoveg += "\n\tBogyók";
             if (snussz) szoveg += "\n\tSnüssz";
             if (ostor) szoveg += "\n\tOstor";
+            if (multimeter) szoveg += "\n\tMultimeter";
             if (vegyestuzelesukazanhofokmeropalca) szoveg += "\n\tKazánhőfokmérő";
             string[] valasztasok = { "Kilépés" };
             int valasztottIndex = Menu(szoveg, valasztasok);
