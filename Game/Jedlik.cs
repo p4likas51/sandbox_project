@@ -44,16 +44,16 @@ namespace Game
             Console.Clear();
             string szoveg = ("\nJelenlegi helyzet: Fazakas Miklós matekterme");
             Console.WriteLine(szoveg);
-            if (true) //Majd a vidéki sufnitól fogg függeni
+            if (vegyestuzelesukazanhofokmeropalca == true)
             {
-                Console.WriteLine("\nFazakas Miklós mérges mert elfutottál. Látni sem akar ezért kiküld óráról.");
-                eletkedv += 5;
+                Console.WriteLine("\nKínok között de nagy nehezen sikerült átvészelni az óráját.");
+                eletkedv -= 5;
                 Console.ReadKey();
             }
             else
             {
-                Console.WriteLine("\nKínok között de nagy nehezen sikerült átvészelni az óráját.");
-                eletkedv -= 5;
+                Console.WriteLine("\nFazakas Miklós mérges mert elfutottál. Látni sem akar ezért kiküld óráról.");
+                eletkedv += 5;
                 Console.ReadKey();
             }
             string[] valasztasok = { "Folyosó" };
@@ -181,7 +181,7 @@ namespace Game
             {
                 Console.WriteLine("\nTaláltál egy kósza tömőt. Nem tudod hogy honnan van és milyen de a biztonság kedvéért elrakod.");
                 Console.ReadKey();
-                //inventoryba megy
+                snussz = true;
                 voltTömő = true;
                 CTerem();
             }
@@ -229,7 +229,7 @@ namespace Game
             Console.WriteLine("Megközelíted a büfé létesítményét célod az egyértelmű. A SZÖKÉS (meg egy kis extra)");
             Console.WriteLine("Megközelíted a büfés csajt, most döl el hogy siker lesz-e vagy bukás.");
             Console.ReadLine();
-            if (true) //szteroidtól függ meg talán lesz good-bad beszélgetés opció nagyon nem akarom megcsinálni
+            if (bogyok == true) //szteroidtól függ meg talán lesz good-bad beszélgetés opció nagyon nem akarom megcsinálni
             {
                 Console.WriteLine("Hosszas beszélgetés után számos mély témáról, elérsz a lényegre - elkéred a telefonszámát és ő boldogan odaadja neked." +
                     "\nEzután szépen megkéred hogy engedjen ki a büfé hátulján keresztül. Biztonság kedvéért elkezded feszegetni magadat" +
@@ -469,7 +469,7 @@ namespace Game
             if (randomNumber <= 15) 
             {
                 Console.WriteLine("A tanárúr bejött a terembe de mivel ennyit tervezett mára ezzel a lendülettel ki is ment. Így könnyedén le tudod nyúlni az értékes elektronikai eszközt a teremből");
-                //inventoryba multiméter
+                multimeter = true;
                 Console.ReadLine();
             }
             else
@@ -490,14 +490,14 @@ namespace Game
                 {
                     Console.WriteLine("Könnyedén elrakod a multimétert és teljes nyugodtsággodat megőrzöd annak tudatában hogy nincs bizonyíték.");
                     Console.ReadLine();
-                    //inventoryba multiméter
+                    multimeter = true;
                     ennyitTerveztemMára = true;
                 }
                 else if (multiMeterChance != 100 && Value == 1 && ennyitTerveztemMára == false)
                 {
                     Console.WriteLine("Hirtelen zsebrerakod a multimétert viszont fentáll a veszélye hogy a portás látta a kamerán. Szíved elkezd sietve verni");
                     Console.ReadLine();
-                    //inventoryba multiméter
+                    multimeter = true;
                     Random RandomCaught = new Random();
                     int GettinCaught = RandomCaught.Next(0, 101);
                     if(GettinCaught <= 30)
@@ -506,14 +506,17 @@ namespace Game
                             "\nEgy gyors motozás után megtalálja és visszaveszi, valamint minden illegális tárgyat elkoboz tőled.");
                         Console.ReadLine();
                         idegallapot += 30;
-                        //inventory-ból fegyver meg cigi meg tömő meg stb elveszik
+                        vegyestuzelesukazanhofokmeropalca = false;
+                        ostor = false;
+                        snussz = false;
+                        multimeter = false;
                         ennyitTerveztemMára = true;
                     }
                     else
                     {
                         Console.WriteLine("Szerencsére a portás éppen aludt a kamerákat meg nem volt kedve visszanézni. A multiméter a tiéd.");
                         Console.ReadLine();
-                        //inventoryba multiméter
+                        multimeter = true;
                         ennyitTerveztemMára = true;
                     }
                 }
@@ -538,11 +541,11 @@ namespace Game
             string szoveg = ("\nJelenlegi helyzet: A Jedlik kijárata");
             Console.WriteLine(szoveg);
             Console.WriteLine("EZZZZAAAAAAAAAAAAAZZZZZZZZZZZ ÁÁÁÁÁÁÁÁÁÁÁÁÁÁ, VÉÉÉÉÉÉÉÉÉÉÉÉGREEEEE");
-            if (true) //attól fogg függeni adsz-e vidékiben cigit
+            if (megtamadnak == true)
             {
                 Console.WriteLine("Hiába a nagy örömöd, hirtelen megtámadnak a genetikai hulladékok.");
                 Console.ReadLine();
-                if (true)  //attól függ van-e fegyver vagy steroid
+                if (bogyok == true && fegyverek > 0)
                 {
                     Console.WriteLine("Fölszívod magadat és elkalapálod az összeset." +
                         "\nBosszúból minden értéküket ellopod");
@@ -556,6 +559,8 @@ namespace Game
                     penz -= 5000;
                     eletkedv -= 15;
                     idegallapot += 30;
+                    Korhaz();
+                    KorhazTulelve();
                 }
             }
             else
