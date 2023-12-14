@@ -49,6 +49,23 @@ namespace Game
             Thread.Sleep(2000);
             Environment.Exit(0);
         }
+        public static void Joveg()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(@"
+
+  _  __     _                 _           _    _____ _ _                        _ 
+ | |/ /    | |               | |         | |  / ____(_) |                      | |
+ | ' / __ _| | __ _ _ __   __| | ___   __| | | (___  _| | _____ _ __ ___  ___  | |
+ |  < / _` | |/ _` | '_ \ / _` |/ _ \ / _` |  \___ \| | |/ / _ \ '__/ _ \/ __| | |
+ | . \ (_| | | (_| | | | | (_| | (_) | (_| |  ____) | |   <  __/ | |  __/\__ \ |_|
+ |_|\_\__,_|_|\__,_|_| |_|\__,_|\___/ \__,_| |_____/|_|_|\_\___|_|  \___||___/ (_)                                                                                                                                                                   
+");
+            Console.ForegroundColor = ConsoleColor.White;
+            Thread.Sleep(2000);
+            Environment.Exit(0);
+        }
         public static void Veralkohol()
         {
             bool allapot = true;

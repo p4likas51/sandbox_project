@@ -120,11 +120,9 @@ namespace Game
                 idegallapot += 50;
                 Thread.Sleep(5000);
                 int eselyKorhaz = random.Next(1, 101);
-                if (eselyKorhaz > 0)
-                {
-                    Korhaz();
-                    KorhazTulelve();
-                }
+                Korhaz();
+                KorhazTulelve();
+
             }
             return valasztottIndex;
         }
