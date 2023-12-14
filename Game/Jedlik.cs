@@ -28,7 +28,10 @@ namespace Game
                 {
                     Console.WriteLine("\nBiztiboy megmotoz téged és minden fegyveredet elveszi");
                     Console.ReadKey();
-                    //fegyverek elvesztése
+                    vegyestuzelesukazanhofokmeropalca = false;
+                    ostor = false;
+                    snussz = false;
+                    multimeter = false;
                 }
             }
             else
@@ -206,7 +209,7 @@ namespace Game
             {
                 Console.WriteLine("\nTaláltál aprót elhajítva a földön. Elég hanyag volt előző gazdája, te sokkal jobban bánsz majd vele.");
                 Console.ReadKey();
-                //pénz ++
+                penz += 500;
             }
             else
             {
@@ -222,14 +225,10 @@ namespace Game
 
         public static int Bufe()
         {
-
             Console.Clear();
             string szoveg = ("\nJelenlegi helyzet: Büfé");
-            Console.WriteLine(szoveg);
-           
-            
-
-            if (bogyok == true && voltálmáritt == false) //szteroidtól függ meg talán lesz good-bad beszélgetés opció nagyon nem akarom megcsinálni
+            Console.WriteLine(szoveg);           
+            if (bogyok == true && voltálmáritt == false) //talán lesz good-bad beszélgetés opció nagyon nem akarom megcsinálni
             {
                 Console.WriteLine("Megközelíted a büfé létesítményét célod az egyértelmű. A SZÖKÉS (meg egy kis extra)");
                 Console.WriteLine("Megközelíted a büfés csajt, most döl el hogy siker lesz-e vagy bukás.");
@@ -243,7 +242,7 @@ namespace Game
                 voltálmáritt = true;
                 return 1;
             }
-            else if (voltálmáritt == true) // nincsen szteroid
+            else if (voltálmáritt == true)
             {
                 Console.WriteLine("Ahogyan elkezded a büfé felé venni az irányodat, belegondolsz hogy előzőleg mi történt és inkább sarkon fordulsz");
                 Console.ReadLine();
@@ -284,7 +283,7 @@ namespace Game
                 Value = value;
             } while (Value != 1 && Value != 2);
 
-            if (Value == 1) //meg ha inventoryba van cigi
+            if (Value == 1)
             {
                 Console.WriteLine("Tiszta élvezettel telefújtad az egész budoir helységét rákkeltő füsttel és kielégítve érzed magad.");
                 Console.ReadLine();
