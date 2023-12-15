@@ -5,18 +5,10 @@ namespace Game
 {
     internal partial class Program
     {
-        //static int eletkedv = 70;
-        //static int veralkoholszint = 0;
-        //static int idegallapot = 0;
-        //static int penz = 2000;
-        //static bool vegyestuzelesukazanhofokmeropalca = false;
-        //static bool fomenu = true;
-        //static Random random = new Random();
-        static bool inv; 
         static int eletkedv = 0;
         static int veralkoholszint = 0;
         static int idegallapot = 70;
-        static int penz = 5800;
+        static int penz = 4000;
         static bool megtamadnak = false;
         static bool bogyok = false;
         static bool fomenu = true;
@@ -88,7 +80,7 @@ namespace Game
                                         {
                                             veralkoholszint += 10;
                                             eletkedv += 5;
-                                            penz -= 50;
+                                            penz -= 300;
                                             kocsmaesemeny = MakviragkocsmaEsemeny();
                                         }
                                         if (kocsmaesemeny == 2)
@@ -213,12 +205,14 @@ namespace Game
                                                     Console.WriteLine("A sötétben egy random emberrel kardoztál és elég jó volt. Így kicsit vidámabban fogod elhagyni a budit.");
                                                     Console.ReadLine();
                                                     eletkedv += 5;
+                                                    idegallapot -= 10;
                                                 }
                                                 else if (wcesemeny == 1)
                                                 {
                                                     Console.WriteLine("Nem bírtad tovább és hánytál egyett. Ezért megkönnyebültebben távolzol a helységből");
                                                     Console.ReadLine();
                                                     veralkoholszint -= 15;
+                                                    idegallapot -= 5;
                                                 }
                                             }
                                             int wc = WC();
