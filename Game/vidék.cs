@@ -125,7 +125,7 @@ namespace Game
         }
         public static int HitelHelyszin()
         {
-            string szoveg = "Jelenlegi helyzet: Az évek során felhalmozódott hitel visszafizetésére máig kaptál haladékot, valamilyen módon törlesztened kell";
+            string szoveg = "Jelenlegi helyzet: Az évek során felhalmozódott hitel visszafizetésére máig kaptál haladékot, valamilyen módon törlesztened kell (6000Ft)";
             if (penz < 6000)
             {
                 szoveg += "\n\nBármennyire győzködöd a kocsmárost, ennyi pénz nem lesz elég!";
