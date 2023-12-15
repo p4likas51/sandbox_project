@@ -50,14 +50,14 @@ namespace Game
             Console.WriteLine(szoveg);
             if (vegyestuzelesukazanhofokmeropalca == true)
             {
-                Console.WriteLine("\nKínok között de nagy nehezen sikerült átvészelni az óráját.");
-                eletkedv -= 5;
+                Console.WriteLine("\nFazakas Miklós mérges mert elloptad a hőpálcát a sufnijából. Látni sem akar ezért kiküld óráról.");
+                eletkedv += 5;
                 Console.ReadKey();
             }
-            else
+            else 
             {
-                Console.WriteLine("\nFazakas Miklós mérges mert elfutottál. Látni sem akar ezért kiküld óráról.");
-                eletkedv += 5;
+                Console.WriteLine("\nNagy nehezen de kíbírod az órát anélkül hogy megőrülnél, de még olyan hosszú lesz a nap.");
+                eletkedv -= 5;
                 Console.ReadKey();
             }
             string[] valasztasok = { "Folyosó" };
@@ -406,6 +406,7 @@ namespace Game
                 else
                 {
                     Console.WriteLine("Hiába esedezel elötte térdre rogyva, ő úgy döntött hogy ma bizony meg kell bírkoznod az akadájokkal ebben a szutykos épületben");
+                    Console.ReadLine();
                     string[] valasztasok = { "Folyosó" };
                     int valasztottIndex = Menu(szoveg, valasztasok);
                     AnnyiraNemAkarom = true;
@@ -615,16 +616,16 @@ namespace Game
                 Console.WriteLine("Mihejst belépsz a terembe szemrevételezed a sok elektronikai eszközt ami a teremben található." +
                     "\n eszedbe jut hogy a mai nap nem működnke a kamerák, egy döntés áll elébe.");
                 int index = 0;
-                string[] igenVagyNem = { "Megpróbálod ellponi a multimétert", "Inkább tanulmányozod a Karnough-táblát" };
+                string[] igenVagyNem = { "Megpróbálod ellponi a multimétert", "Inkább tanulmányozod a Karnough-táblát", "Annak érdekében hogy ne őrülj meg tömsz egyet" };
                 programFut();
-                if (multiMeterChance == 100 && index == 1 && ennyitTerveztemMára == false)
+                if (multiMeterChance == 100 && index == 0 && ennyitTerveztemMára == false)
                 {
                     Console.WriteLine("Könnyedén elrakod a multimétert és teljes nyugodtsággodat megőrzöd annak tudatában hogy nincs bizonyíték.");
                     Console.ReadLine();
                     multimeter = true;
                     ennyitTerveztemMára = true;
                 }
-                else if (multiMeterChance != 100 && index == 1 && ennyitTerveztemMára == false)
+                else if (multiMeterChance != 100 && index == 0 && ennyitTerveztemMára == false)
                 {
                     Console.WriteLine("Hirtelen zsebrerakod a multimétert viszont fentáll a veszélye hogy a portás látta a kamerán. Szíved elkezd sietve verni");
                     Console.ReadLine();
@@ -651,15 +652,23 @@ namespace Game
                         ennyitTerveztemMára = true;
                     }
                 }
-                else if (ennyitTerveztemMára == false)
+                else if (ennyitTerveztemMára == false && index == 1)
                 {
                     Console.WriteLine("Már golyózik a szemed az igazság táblák miatt mikor hirtelen meghallod csengét és világi megkönnyebülésben részesedsz.");
                     Console.ReadLine();
                     ennyitTerveztemMára = true;
                 }
-                else
+                else if (ennyitTerveztemMára == true)
                 {
                     Console.WriteLine("Józan ember nem jönne be másodjára ebbe a terembe még kinzás fenyegetésével sem. Hirtelen észreveszed magadat és gyorsan kisietsz a teremből");
+                    Console.ReadLine();
+                }
+                else
+                {
+                    Console.WriteLine("Egy picit csíp a a cigarettát helyettesítő nikotin zacskó de segít átvészelni az órát");
+                    Console.ReadLine();
+                    snussz = false;
+                    idegallapot -= 40;
                 }
                 void opciokMegjelenitese()
                 {

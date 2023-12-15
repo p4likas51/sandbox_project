@@ -562,7 +562,7 @@ namespace Game
                                                                                 }
                                                                                 else if (!kiszokes)
                                                                                 {
-                                                                                    Folyoso();
+                                                                                    dokument = Folyoso();
                                                                                 }
                                                                                 break;
                                                                             case 1:
@@ -573,7 +573,7 @@ namespace Game
                                                                                 }
                                                                                 else
                                                                                 {
-                                                                                    Folyoso();
+                                                                                    dokument = Folyoso();
                                                                                 }
                                                                                 break;
                                                                             case 3:
@@ -584,7 +584,7 @@ namespace Game
                                                                     
                                                                     if (kiszokes == true)
                                                                     {
-                                                                        jedlik =JedlikKijarat();
+                                                                        jedlik = JedlikKijarat();
                                                                     }
                                                                     else
                                                                     {
@@ -605,7 +605,7 @@ namespace Game
                                                                                         int nem2 = SZGTerem();
                                                                                         if (nem2 == 0)
                                                                                         {
-                                                                                            jedlik =JedlikKijarat();
+                                                                                            jedlik = JedlikKijarat();
                                                                                         }
                                                                                         else
                                                                                         {
@@ -639,7 +639,7 @@ namespace Game
                                                                                                 }
                                                                                                 else
                                                                                                 {
-                                                                                                    TesiOltozo();
+                                                                                                    námbör_sziksz1 = TesiOltozo();
                                                                                                 }
                                                                                             }
                                                                                         }
@@ -721,7 +721,7 @@ namespace Game
                                                         }
                                                     } while (XXXBolt != 2);
                                                     break;
-
+                                                    #endregion
                                             }
 
                                         } while (videki != 3);
@@ -729,7 +729,6 @@ namespace Game
 
                                     }
                                     break;
-                                #endregion
                                 #region Vidékkiegészítő
                                 case 2:
                                     if (otthoniWC)
